@@ -8,7 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "knex": "knex --knexfile ./server/knexfile.js"    
   },
   "private": true,
   "dependencies": {
@@ -22,6 +23,8 @@
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
     "core-js": "^2.4.1",
+    "knex": "^0.13.0",
+    "pg": "^7.3.0",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },

@@ -1,1 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+
+.site {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: 
+    "header header"
+    "nav nav"
+    "main main"
+    "footer footer";
+  /* grid-template-rows: auto; */
+}
+
+.header {
+  grid-area: header;
+  background-color: red;
+}
+
+.navbar {
+  grid-area: nav;
+  background-color: blue;
+}
+
+.footer {
+  grid-area: footer;
+  background-color: orange;
+}
+
+.product-highlights {
+  display: inline-block;
+  width: 100%;
+  border: 1px solid orange;
+  text-align: center;  
+}
+
+.product {
+  display: inline-block;
+  min-height: 100px;
+  min-width: 100px;
+  border: 1px solid black;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.product-image {
+  height: 200px;
+  width: 200px;
+}
+
+.product-price {
+  float: right;
+  padding-right: 10px;
+}
+
+.highlights-banner {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
