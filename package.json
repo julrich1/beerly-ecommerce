@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "knex": "knex --knexfile ./server/knexfile.js"    
+    "knex": "knex --knexfile ./server/knexfile.js"
   },
   "private": true,
   "dependencies": {
@@ -22,7 +22,9 @@
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
+    "bcrypt-as-promised": "^1.1.0",
     "core-js": "^2.4.1",
+    "jsonwebtoken": "^8.0.1",
     "knex": "^0.13.0",
     "pg": "^7.3.0",
     "rxjs": "^5.4.2",

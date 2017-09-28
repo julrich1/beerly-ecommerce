@@ -1,0 +1,23 @@
+<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+    <div>
+      <label for="email">Email:</label>
+      <input name="email" type="email" ngModel required>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input name="password" type="password" ngModel required>
+    </div>
+    <div>
+        <label for="password_confirm">Confirm Password:</label>
+        <input name="password_confirm" type="password" ngModel required>
+    </div>
+    <div>
+        <label for="firstname">First name:</label>
+        <input name="firstname" type="text" ngModel required>
+    </div>
+    <div>
+        <label for="lastname">Last name:</label>
+        <input name="lastname" type="text" ngModel required>
+    </div>
+    <button type="submit">Submit</button>
+  </form>

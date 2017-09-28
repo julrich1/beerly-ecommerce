@@ -1,15 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { HttpModule }    from '@angular/http'; 
 
 import { AppComponent } from './app.component';
-import { ProductComponent } from './product.component';
-import { ProductListComponent } from './product-list.component';
-import { ProductHighlightsComponent } from './product-highlights.component';
-import { HighlightsBannerComponent } from "./highlights-banner.component";
-import { LoginComponent } from "./login.component";
+import { ProductComponent } from './products/product.component';
+import { ProductListComponent } from './products/product-list.component';
+import { ProductHighlightsComponent } from './products/product-highlights.component';
+import { HighlightsBannerComponent } from "./products/highlights-banner.component";
+import { LoginComponent } from "./users/login.component";
+import { RegisterComponent } from "./users/register.component";
 
-import { ProductService }     from './product.service';
+import { ProductService }     from './products/product.service';
+import { UserService }     from './users/users.service';
 
 import { AppRoutingModule }     from './app-routing.module';
 
@@ -21,14 +24,17 @@ import { AppRoutingModule }     from './app-routing.module';
     ProductListComponent,
     ProductHighlightsComponent,
     HighlightsBannerComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
