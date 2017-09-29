@@ -9,6 +9,8 @@ import { ProductListComponent } from './products/product-list.component';
 import { ProductHighlightsComponent } from './products/product-highlights.component';
 import { HighlightsBannerComponent } from "./products/highlights-banner.component";
 import { ProductDisplayComponent } from "./products/product-display.component";
+import { CartComponent } from "./products/cart.component";
+import { CheckoutComponent } from "./products/checkout.component";
 import { LoginComponent } from "./users/login.component";
 import { RegisterComponent } from "./users/register.component";
 
@@ -27,7 +29,9 @@ import { AppRoutingModule }     from './app-routing.module';
     HighlightsBannerComponent,
     LoginComponent,
     RegisterComponent,
-    ProductDisplayComponent
+    ProductDisplayComponent,
+    CartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

@@ -5,13 +5,17 @@ import { ProductHighlightsComponent }   from './products/product-highlights.comp
 import { ProductDisplayComponent } from "./products/product-display.component";
 import { LoginComponent } from "./users/login.component";
 import { RegisterComponent } from "./users/register.component";
+import { CartComponent } from "./products/cart.component";
+import { CheckoutComponent } from "./products/checkout.component";
  
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "home", component: ProductHighlightsComponent },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "product/:id", component: ProductDisplayComponent }    
+  { path: "product/:id", component: ProductDisplayComponent },
+  { path: "cart", component: CartComponent },
+  { path: "checkout", component: CheckoutComponent }  
 ];
  
 @NgModule({

@@ -4,6 +4,7 @@ const app = express();
 
 const usersRoute = require("./routes/users");
 const tokenRoute = require("./routes/token");
+const productsRoute = require("./routes/products");
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 
 app.use("/api/", usersRoute);
 app.use("/api/", tokenRoute);
+app.use("/api/", productsRoute);
 
 app.get("/", (req, res) => {
   res.send("Hi");

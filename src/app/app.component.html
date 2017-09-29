@@ -1,11 +1,12 @@
 <div class="site">
   <div class="header">
-    <img src="/assets/placeholder-sample-logo.png">
+    <a href="/"><img src="/assets/placeholder-sample-logo.png"></a>
     <input type="text" name="search">
     <button type="submit">Search</button>
     <a routerLink="/login" *ngIf="!userService.userIsLoggedIn">Login</a>
     <a routerLink="/register" *ngIf="!userService.userIsLoggedIn">Register</a>
     <a (click)="logout()" *ngIf="userService.userIsLoggedIn">Logout</a>
+    <a routerLink="/cart">{{productService.cart.length}} Cart</a>
   </div>
   <div class="navbar">
     Belgians - IPAs - Sours - Ciders - Ales

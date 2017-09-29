@@ -1,1 +1,7 @@
-PRODUCT HERE
+<div *ngIf="product">
+  <img class="product-image" src="/assets/chimay-cinqcents-1000x1000.JPG">    
+  {{product.name}} Rating: {{product.rating}}
+  {{product.description}}
+  ${{product.price}}
+  <a (click)="add(product)">Add to cart</a>
+</div>
