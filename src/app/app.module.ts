@@ -8,11 +8,12 @@ import { ProductComponent } from './products/product.component';
 import { ProductListComponent } from './products/product-list.component';
 import { ProductHighlightsComponent } from './products/product-highlights.component';
 import { HighlightsBannerComponent } from "./products/highlights-banner.component";
+import { ProductDisplayComponent } from "./products/product-display.component";
 import { LoginComponent } from "./users/login.component";
 import { RegisterComponent } from "./users/register.component";
 
 import { ProductService }     from './products/product.service';
-import { UserService }     from './users/users.service';
+import { UserService }     from './users/user.service';
 
 import { AppRoutingModule }     from './app-routing.module';
 
@@ -25,7 +26,8 @@ import { AppRoutingModule }     from './app-routing.module';
     ProductHighlightsComponent,
     HighlightsBannerComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProductDisplayComponent
   ],
   imports: [
     BrowserModule,

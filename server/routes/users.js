@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const knex = require("../knex");
@@ -5,6 +6,7 @@ const knex = require("../knex");
 const bcrypt = require("bcrypt-as-promised");
 const jwt = require("jsonwebtoken");
 
+const createError = require("../common/create-error");
 
 // const setCookie = require("../common/set-cookie");
 // const saveAvatar = require("../common/avatars").saveAvatar;
@@ -13,8 +15,14 @@ const jwt = require("jsonwebtoken");
 
 // const userManager = require("../common/user-management");
 
-function createError(code, message) {
-  return { code: code, message: message };
+function setCookie(claim, res, router) {
+  const token = jwt.sign(claim, process.env.JWT_KEY, { expiresIn: "30 days"} );
+
+  res.cookie("token", token, {
+    httpOnly: true,
+    expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),  // 30 days
+    secure: router.get("env") === "production"
+  });
 }
 
 function authorizeUser(req, res, next) {
@@ -29,24 +37,25 @@ function authorizeUser(req, res, next) {
   });
 }
 
-router.get("/users", authorizeUser, (req, res, next) => {
-  const userId = parseInt(req.claim.userId);
+// router.get("/users", authorizeUser, (req, res, next) => {
+//   const userId = parseInt(req.claim.userId);
 
-  if (isNaN(userId) || userId < 0) { return next("Invalid User ID"); }
+//   console.log(userId);
 
-  knex("users")
-    .where("id", userId)
-    .select(["id", "email", "username", "avatar"])
-    .first()
-    .then((result) => {
-      result.avatar = `https://robohash.org/${result.avatar}.png?size=200x200`;
-      res.send(result);
-    })
-    .catch((err) => {
-      return next(err);
-    });
+//   if (isNaN(userId) || userId < 0) { return next("Invalid User ID"); }
 
-});
+//   knex("users")
+//     .where("id", userId)
+//     // .select(["id", "email"])
+//     .first()
+//     .then((result) => {
+//       res.send(true);
+//     })
+//     .catch((err) => {
+//       return next(err);
+//     });
+
+// });
 
 router.patch("/users", (req, res, next) => {
   let data = {};
@@ -144,11 +153,10 @@ router.post("/users", (req, res, next) => {
       delete userData.password;
       userData.hashed_password = hashed_password;
 
-      return knex("users").insert(userData);
+      return knex("users").insert(userData).returning(["id", "firstname", "lastname", "email"]);
     })
     .then((result) => {
       result = result[0];
-      console.log(result);
       setCookie({ userId: result.id, username: result.username }, res, router);
       
       res.send(result);
@@ -159,32 +167,45 @@ router.post("/users", (req, res, next) => {
 });
 
 function checkEmailExists(email) {
-  let queryString = "";
-
-  if (username && email) {
-    queryString = `SELECT * FROM users WHERE LOWER(username) = LOWER('${username}') OR email = '${email}';`;
-  }
-  else if (username) {
-    queryString = `SELECT * FROM users WHERE LOWER(username) = LOWER('${username}');`;    
-  }
-  else if (email) {
-    queryString = `SELECT * FROM users WHERE email = '${email}';`;    
-  }
-  
-  if (queryString) {
-    return knex.raw(queryString)
-      .then((result) => {
-        if (result.rows.length > 0) {
-          return true;
-        }
+  return knex("users").where("email", email)
+    .then((result) => {
+      if (result.length > 0) {
+        return true;
+      }
+      else {
         return false;
-      })
-      .catch((err) => {
-        console.log(err);
-        return null;
-      });
-  }
-  return Promise.resolve(false);
+      }
+    })
+    .catch((err) => {
+      console.log("Error: ", err);
+      return true;
+    });
+  // let queryString = "";
+
+  // if (username && email) {
+  //   queryString = `SELECT * FROM users WHERE LOWER(username) = LOWER('${username}') OR email = '${email}';`;
+  // }
+  // else if (username) {
+  //   queryString = `SELECT * FROM users WHERE LOWER(username) = LOWER('${username}');`;    
+  // }
+  // else if (email) {
+  //   queryString = `SELECT * FROM users WHERE email = '${email}';`;    
+  // }
+  
+  // if (queryString) {
+  //   return knex.raw(queryString)
+  //     .then((result) => {
+  //       if (result.rows.length > 0) {
+  //         return true;
+  //       }
+  //       return false;
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       return null;
+  //     });
+  // }
+  // return Promise.resolve(false);
 }
 
 module.exports = router;

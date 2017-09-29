@@ -1,1 +1,19 @@
-<router-outlet></router-outlet>
+<div class="site">
+  <div class="header">
+    <img src="/assets/placeholder-sample-logo.png">
+    <input type="text" name="search">
+    <button type="submit">Search</button>
+    <a routerLink="/login" *ngIf="!userService.userIsLoggedIn">Login</a>
+    <a routerLink="/register" *ngIf="!userService.userIsLoggedIn">Register</a>
+    <a (click)="logout()" *ngIf="userService.userIsLoggedIn">Logout</a>
+  </div>
+  <div class="navbar">
+    Belgians - IPAs - Sours - Ciders - Ales
+  </div>
+  <div class="main">
+    <router-outlet></router-outlet>      
+  </div>
+  <div class="footer">
+    <a href="#">Contact</a> <a href="#">About</a>
+  </div>
+</div>

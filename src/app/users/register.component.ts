@@ -1,13 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { UserService } from "./users.service";
+import { UserService } from "./user.service";
 
 @Component({
   selector: 'register',
   templateUrl: './register.component.html',
   // styleUrls: ['./app.component.css']
 })
+
 export class RegisterComponent {
   constructor(private userService: UserService) {}
 
