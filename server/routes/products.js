@@ -25,7 +25,7 @@ router.get("/products/:id", (req, res, next) => {
         res.send(response[0]);
       }
       else {
-        res.send("No products found");
+        res.send("No product found");
       }
       // console.log("Product: ", response);
     });

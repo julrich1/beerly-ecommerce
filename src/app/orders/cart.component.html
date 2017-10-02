@@ -1,4 +1,4 @@
 <div *ngFor="let product of productService.cart">
-  {{product.name}}
+  {{product.name}} <img width="20px" src="/assets/remove icon.png" (click)="removeFromCart(product)">
 </div>
 <button routerLink="/checkout">Checkout</button>

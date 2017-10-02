@@ -6,6 +6,7 @@ import { Product } from './product';
 @Injectable()
 export class ProductService {
   private productsUrl: string = "api/products";
+  private cartUrl: string = "api/cart";  
   private headers = new Headers({'Content-Type': 'application/json'});
   public cart: Array<Product> = [];
 
@@ -45,7 +46,38 @@ export class ProductService {
     return result;
   }
 
-  addToCart(product): void {
-    this.cart.push(product);
+  addToCart(product): Promise<void> {
+    return this.http.post(`${this.cartUrl}`, product, {headers: this.headers})
+      .toPromise()
+      .then((response) => {
+        console.log("product added");
+        this.cart.push(product);        
+      })
+  }
+
+  getCart(): Promise<void> {
+    return this.http.get(`${this.cartUrl}`, {headers: this.headers})
+      .toPromise()
+      .then((response) => {
+        console.log(response.json());
+        const products = response.json();
+        this.cart = products.reduce((acc, product) => {
+          acc.push(product);
+          return acc;
+        }, []);
+      })
+  }
+
+  deleteFromCart(product): Promise<void> {
+    return this.http.delete(`${this.cartUrl}/${product.id}`, {headers: this.headers})
+      .toPromise()
+      .then((result) => {
+        const products = result.json();
+        this.cart = products.reduce((acc, product) => {
+          acc.push(product);
+          return acc;
+        }, []);
+
+      })
   }
 }

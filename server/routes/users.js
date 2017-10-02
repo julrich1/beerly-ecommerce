@@ -7,6 +7,7 @@ const bcrypt = require("bcrypt-as-promised");
 const jwt = require("jsonwebtoken");
 
 const createError = require("../common/create-error");
+const authorizeUser = require("../common/authorize");
 
 // const setCookie = require("../common/set-cookie");
 // const saveAvatar = require("../common/avatars").saveAvatar;
@@ -22,18 +23,6 @@ function setCookie(claim, res, router) {
     httpOnly: true,
     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),  // 30 days
     secure: router.get("env") === "production"
-  });
-}
-
-function authorizeUser(req, res, next) {
-  if (!req.cookies || !req.cookies.token) { return next(createError(401, "No cookie set")); }
-  
-  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, payload) => {
-    if (err) { return next(createError(401, "Unauthorized")); }
-    
-    req.claim = payload;
-    
-    next();
   });
 }
 

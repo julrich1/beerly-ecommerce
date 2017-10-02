@@ -1,0 +1,18 @@
+Ship To:
+<form #shipForm="ngForm" (ngSubmit)="submit(shipForm)">
+  <label for="firstname">First name</label>
+  <input name="firstname" type="text" ngModel required>
+  <label for="lastname">Last name</label>
+  <input name="lastname" type="text" ngModel required>
+  <label for="address1">Address 1</label>
+  <input name="address1" type="text" ngModel required>
+  <label for="address2">Address 2</label>
+  <input name="address2" type="text" ngModel>
+  <label for="city">City</label>
+  <input name="city" type="text" ngModel required>
+  <label for="state">State</label>
+  <input name="state" type="text" ngModel required>
+  <label for="zip">Zip</label>
+  <input name="zip" type="text" ngModel required>
+  <button type="submit">Next</button>
+</form>

@@ -27,6 +27,8 @@ export class ProductDisplayComponent implements OnInit {
   }
 
   add(product): void {
-    this.productService.addToCart(product);
+    this.productService.addToCart(product).then(() => {
+      //Do something?
+    });
   }
 }

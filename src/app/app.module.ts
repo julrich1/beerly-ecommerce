@@ -9,10 +9,12 @@ import { ProductListComponent } from './products/product-list.component';
 import { ProductHighlightsComponent } from './products/product-highlights.component';
 import { HighlightsBannerComponent } from "./products/highlights-banner.component";
 import { ProductDisplayComponent } from "./products/product-display.component";
-import { CartComponent } from "./products/cart.component";
-import { CheckoutComponent } from "./products/checkout.component";
+import { CartComponent } from "./orders/cart.component";
+import { CheckoutComponent } from "./orders/checkout.component";
 import { LoginComponent } from "./users/login.component";
 import { RegisterComponent } from "./users/register.component";
+import { SummaryComponent } from "./orders/summary.component";
+import { OrderComponent } from "./orders/order.component";
 
 import { ProductService }     from './products/product.service';
 import { UserService }     from './users/user.service';
@@ -31,7 +33,9 @@ import { AppRoutingModule }     from './app-routing.module';
     RegisterComponent,
     ProductDisplayComponent,
     CartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    SummaryComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

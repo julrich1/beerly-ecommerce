@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.integer("user_id").references("users.id");
     table.integer("product_id").references("products.id");
-    table.integer("cart_id");
+    // table.integer("cart_id");
     table.integer("quantity");
     table.timestamps(true, true);
   });

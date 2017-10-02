@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.isLoggedIn();
+    this.productService.getCart();
   }
 
   logout(): void {
