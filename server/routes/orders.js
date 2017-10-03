@@ -8,7 +8,7 @@ router.post("/orders", authorizeUser, (req, res, next) => {
   console.log("POST TO ORDERS", req.body);
 
   const user = req.body.user;
-  user.user_id = 1;
+  user.user_id = req.claim.userId;
   user.order_number = 1;
   user.city = "Seattle";
   delete user.id;
@@ -32,6 +32,19 @@ router.post("/orders", authorizeUser, (req, res, next) => {
     })
     .then((result) => {
       console.log(result);
+      res.send(result);
+    });
+});
+
+router.get("/orders", authorizeUser, (req, res, next) => {
+  let order = [];
+
+  knex("orders").where("user_id", req.claim.userId)
+    .then((result) => {
+      order = result;
+      
+      
+      console.log("Order history: ", result);
       res.send(result);
     });
 });

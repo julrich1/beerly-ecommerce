@@ -98,11 +98,20 @@ export class ProductService {
     this.userService.user.state = "Washington";
 
     const order = { cart: this.cart, user: this.userService.user };
-    
+
     return this.http.post(`${this.orderUrl}`, order, {headers: this.headers})
       .toPromise()
       .then((result) => {
         console.log(result);
       });
+  }
+
+  getOrders(): Promise<any[]> {
+    return this.http.get(`${this.orderUrl}`, {headers: this.headers})
+      .toPromise()
+      .then((response) => {
+        console.log(response);
+        return [];
+      })
   }
 }

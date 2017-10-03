@@ -9,6 +9,7 @@ import { CartComponent } from "./orders/cart.component";
 import { CheckoutComponent } from "./orders/checkout.component";
 import { SummaryComponent } from "./orders/summary.component";
 import { OrderComponent } from "./orders/order.component";
+import { OrderHistoryComponent } from "./orders/order-history.component";
  
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: "cart", component: CartComponent },
   { path: "checkout", component: CheckoutComponent },
   { path: "summary", component: SummaryComponent },
-  { path: "order", component: OrderComponent }
+  { path: "order", component: OrderComponent },
+  { path: "order-history", component: OrderHistoryComponent }  
 ];
  
 @NgModule({

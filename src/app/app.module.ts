@@ -15,6 +15,7 @@ import { LoginComponent } from "./users/login.component";
 import { RegisterComponent } from "./users/register.component";
 import { SummaryComponent } from "./orders/summary.component";
 import { OrderComponent } from "./orders/order.component";
+import { OrderHistoryComponent } from "./orders/order-history.component";
 
 import { ProductService }     from './products/product.service';
 import { UserService }     from './users/user.service';
@@ -35,7 +36,8 @@ import { AppRoutingModule }     from './app-routing.module';
     CartComponent,
     CheckoutComponent,
     SummaryComponent,
-    OrderComponent
+    OrderComponent,
+    OrderHistoryComponent
   ],
   imports: [
     BrowserModule,
