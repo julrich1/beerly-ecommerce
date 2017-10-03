@@ -1,1 +1,4 @@
 Order history here!
+<div *ngFor="let order of orders">
+  <a [routerLink]="['/order', order.id]">{{order.id}}</a>
+</div>

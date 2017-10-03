@@ -30,6 +30,5 @@ export class CheckoutComponent implements OnInit {
   submit(shipForm: NgForm): void {
     console.log(shipForm.value);
     this.router.navigateByUrl("/summary");
-
   }
 }

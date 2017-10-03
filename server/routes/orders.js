@@ -3,6 +3,7 @@ const router = express.Router();
 const knex = require("../knex");
 
 const authorizeUser = require("../common/authorize");
+const clearCart = require("../common/cart");
 
 router.post("/orders", authorizeUser, (req, res, next) => {
   console.log("POST TO ORDERS", req.body);
@@ -16,13 +17,16 @@ router.post("/orders", authorizeUser, (req, res, next) => {
   delete user.firstname;
   delete user.lastname;
 
-  console.log(knex("orders").insert(user).toString());
+  // console.log(knex("orders").insert(user).toString());
+  let orderId = 0;
+
   knex("orders").insert(user).returning("id")
     .then((result) => {
       console.log("RESULT: ", result);
+      orderId = result[0];
       const products = req.body.cart.map((product) => { 
         console.log(product);
-        const newProduct = { product_id: product.id, order_id: result[0], quantity: 1, price: product.price };
+        const newProduct = { product_id: product.id, order_id: orderId, quantity: 1, price: product.price };
         // product.order_id = result.id;
         // product.quantity = 1;
         return newProduct;
@@ -31,8 +35,9 @@ router.post("/orders", authorizeUser, (req, res, next) => {
       return knex("orders_products").insert(products);
     })
     .then((result) => {
+      clearCart(req.claim.userId);
       console.log(result);
-      res.send(result);
+      res.send({orderId: orderId});
     });
 });
 
@@ -46,6 +51,24 @@ router.get("/orders", authorizeUser, (req, res, next) => {
       
       console.log("Order history: ", result);
       res.send(result);
+    });
+});
+
+router.get("/orders/:id", authorizeUser, (req, res, next) => {
+  const orderId = parseInt(req.params.id);
+
+  if (isNaN(orderId) || orderId < 0) { next("Invalid order ID"); }
+
+  let orderDetail = {};
+
+  knex("orders").where("id", orderId)
+    .then((result) => {
+      orderDetail = result[0];
+      return knex("orders_products").where("order_id", orderId).innerJoin("products", "orders_products.product_id", "products.id");
+    })
+    .then((result) => {
+      orderDetail.products = result;
+      res.send(orderDetail);
     });
 });
 

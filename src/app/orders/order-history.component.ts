@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // import { NgForm } from '@angular/forms';
 // import { Router } from '@angular/router';
 
-// import { Product } from "./product";
+import { Order } from "./order";
 
 import { ProductService } from "../products/product.service";
 
@@ -15,6 +15,7 @@ import { ProductService } from "../products/product.service";
 })
 export class OrderHistoryComponent implements OnInit {
   // private product: Product;
+  private orders: Array<Order>;
 
   constructor(
     private productService: ProductService,
@@ -25,6 +26,8 @@ export class OrderHistoryComponent implements OnInit {
     this.productService.getOrders()
       .then((result) => { 
         console.log(result);
+        this.orders = result.json();
+        console.log(this.orders);
       });
     // this.route.paramMap
     //   .switchMap((params: ParamMap) => this.productService.getProduct(+params.get("id")))

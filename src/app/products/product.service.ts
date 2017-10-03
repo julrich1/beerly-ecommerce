@@ -89,7 +89,7 @@ export class ProductService {
       })
   }
 
-  submitOrder(): Promise<void> {
+  submitOrder(): Promise<number> {
     this.userService.user.address1 = "1 main st";
     this.userService.user.address2 = "Apt 1";
     this.userService.user.zip = 98122;
@@ -102,16 +102,25 @@ export class ProductService {
     return this.http.post(`${this.orderUrl}`, order, {headers: this.headers})
       .toPromise()
       .then((result) => {
-        console.log(result);
+        console.log(result.json());
+        return result.json().orderId;
       });
   }
 
-  getOrders(): Promise<any[]> {
+  getOrders(): Promise<any> {
     return this.http.get(`${this.orderUrl}`, {headers: this.headers})
       .toPromise()
       .then((response) => {
         console.log(response);
-        return [];
+        return response;
+      })
+  }
+
+  getOrder(id: number): Promise<any> {
+    return this.http.get(`${this.orderUrl}/${id}`, {headers: this.headers})
+      .toPromise()
+      .then((response) => {
+        return response;
       })
   }
 }

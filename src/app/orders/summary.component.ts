@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-// import { Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 // import { Product } from "./product";
 
@@ -18,7 +18,7 @@ export class SummaryComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    // private router: Router    
+    private router: Router    
   ) {}
 
   ngOnInit(): void {
@@ -28,7 +28,11 @@ export class SummaryComponent implements OnInit {
   }
 
   submitOrder(): void {
-    console.log("Order submitted");
-    this.productService.submitOrder();
+    this.productService.submitOrder()
+      .then((orderNumber) => {
+        const link = ['/order', orderNumber];
+        this.router.navigate(link);    
+      })
+
   }
 }
