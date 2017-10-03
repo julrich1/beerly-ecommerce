@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 
 // import { Product } from "./product";
 
-// import { ProductService } from "./product.service";
+import { ProductService } from "../products/product.service";
 
 // import 'rxjs/add/operator/switchMap';
 
@@ -17,7 +17,7 @@ export class SummaryComponent implements OnInit {
   // private product: Product;
 
   constructor(
-    // private productService: ProductService,
+    private productService: ProductService,
     // private router: Router    
   ) {}
 
@@ -27,9 +27,8 @@ export class SummaryComponent implements OnInit {
     //   .subscribe(product => this.product = product);
   }
 
-  // submit(shipForm: NgForm): void {
-  //   console.log(shipForm.value);
-  //   this.router.navigateByUrl("/summary");
-
-  // }
+  submitOrder(): void {
+    console.log("Order submitted");
+    this.productService.submitOrder();
+  }
 }

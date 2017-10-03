@@ -8,8 +8,10 @@ import 'rxjs/add/operator/toPromise';
 export class UserService implements OnInit {
   private headers = new Headers({'Content-Type': 'application/json'});  
   private usersUrl = 'api/users';
-  private tokenUrl = 'api/token';  
+  private tokenUrl = 'api/token';
+
   public userIsLoggedIn: boolean = false;
+  public user: User = new User();
   
   constructor(private http: Http) {}
 

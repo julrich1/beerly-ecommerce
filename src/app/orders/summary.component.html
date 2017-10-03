@@ -1,2 +1,6 @@
 Summary here:
-<button routerLink="/order">Place Order</button>
+Address and stuff here
+<div *ngFor="let product of productService.cart">
+  {{product.name}}
+</div>
+<button (click)="submitOrder()">Place Order</button>

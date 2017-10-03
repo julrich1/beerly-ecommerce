@@ -3,14 +3,22 @@ import { Headers, Http } from '@angular/http';
 
 import { Product } from './product';
 
+import { UserService } from '../users/user.service';
+
 @Injectable()
 export class ProductService {
   private productsUrl: string = "api/products";
   private cartUrl: string = "api/cart";  
+  private orderUrl: string = "api/orders";
+
   private headers = new Headers({'Content-Type': 'application/json'});
+
   public cart: Array<Product> = [];
 
-  constructor(private http: Http) {}
+  constructor(
+    private http: Http,
+    private userService: UserService
+  ) {}
 
   getProducts(): Promise<Product[]> {
     return this.http.get(this.productsUrl, {headers: this.headers})
@@ -79,5 +87,22 @@ export class ProductService {
         }, []);
 
       })
+  }
+
+  submitOrder(): Promise<void> {
+    this.userService.user.address1 = "1 main st";
+    this.userService.user.address2 = "Apt 1";
+    this.userService.user.zip = 98122;
+    this.userService.user.phone = 5555555555;
+    this.userService.user.country = "USA";
+    this.userService.user.state = "Washington";
+
+    const order = { cart: this.cart, user: this.userService.user };
+    
+    return this.http.post(`${this.orderUrl}`, order, {headers: this.headers})
+      .toPromise()
+      .then((result) => {
+        console.log(result);
+      });
   }
 }
