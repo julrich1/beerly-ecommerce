@@ -76,4 +76,13 @@ export class UserService implements OnInit {
         return true;
       })
   }
+
+  getUser(): Promise<void> {
+    return this.http.get(this.usersUrl, {headers: this.headers})
+      .toPromise()
+      .then((response) => {
+        this.user = response.json();
+        // return response.json();
+      })
+  }
 }

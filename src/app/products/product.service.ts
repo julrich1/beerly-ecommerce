@@ -36,7 +36,7 @@ export class ProductService {
         const product: any = response.json();
         console.log(product);
         // return new Product(1,"asdf", "asdf", 5.00, 4);
-        return new Product(product.id, product.name, product.description, product.price, product.rating);
+        return new Product(product.id, product.name, product.description, product.price, product.rating, 1);
       })
   }
 
@@ -55,11 +55,23 @@ export class ProductService {
   }
 
   addToCart(product): Promise<void> {
+    product.quantity = 1;
     return this.http.post(`${this.cartUrl}`, product, {headers: this.headers})
       .toPromise()
       .then((response) => {
         console.log("product added");
-        this.cart.push(product);        
+        // this.cart.push(product);
+        
+        let found = false;
+
+        for (let p of this.cart) {
+          if (p.id === product.id) {
+            p.quantity += product.quantity;
+            found = true;
+          }
+        }
+
+        if (!found) { this.cart.push(product); }
       })
   }
 
@@ -90,14 +102,23 @@ export class ProductService {
   }
 
   submitOrder(): Promise<number> {
-    this.userService.user.address1 = "1 main st";
-    this.userService.user.address2 = "Apt 1";
-    this.userService.user.zip = 98122;
-    this.userService.user.phone = 5555555555;
-    this.userService.user.country = "USA";
-    this.userService.user.state = "Washington";
+    // this.userService.user.address1 = "1 main st";
+    // this.userService.user.address2 = "Apt 1";
+    // this.userService.user.zip = 98122;
+    // this.userService.user.phone = 5555555555;
+    // this.userService.user.country = "USA";
+    // this.userService.user.state = "Washington";
 
-    const order = { cart: this.cart, user: this.userService.user };
+    const orderDetail = {
+      address1: this.userService.user.address1,
+      address2: this.userService.user.address2,
+      zip: this.userService.user.zip,
+      phone: this.userService.user.phone || 5555555555,
+      country: this.userService.user.country || "USA",
+      state: this.userService.user.state
+    };
+
+    const order = { cart: this.cart, user: orderDetail };
 
     return this.http.post(`${this.orderUrl}`, order, {headers: this.headers})
       .toPromise()

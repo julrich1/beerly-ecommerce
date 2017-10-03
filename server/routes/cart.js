@@ -9,10 +9,21 @@ router.post("/cart", authorizeUser, (req, res, next) => {
 
   console.log(req.body);
 
-  const cartProduct = { user_id: req.claim.userId, product_id: req.body.id, quantity: 1 };
+  const cartProduct = { user_id: req.claim.userId, product_id: req.body.id, quantity: req.body.quantity };
 
-  knex("carts").insert(cartProduct)
+  knex("carts").where("user_id", cartProduct.user_id).andWhere("product_id", cartProduct.product_id)
     .then((result) => {
+      console.log("Does it exist?: ", result);
+      if (result.length) {
+        cartProduct.quantity += result[0].quantity;
+        return knex("carts").update(cartProduct).where("product_id", cartProduct.product_id);
+      }
+      else {
+        return knex("carts").insert(cartProduct);
+      }
+    })
+    .then((result) => {
+      console.log("This was either updated or inserted: ", cartProduct);
       res.send(result[0]);
     });
 });

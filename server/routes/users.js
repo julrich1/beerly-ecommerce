@@ -26,31 +26,22 @@ function setCookie(claim, res, router) {
   });
 }
 
-// router.get("/users", authorizeUser, (req, res, next) => {
-//   const userId = parseInt(req.claim.userId);
+router.get("/users", authorizeUser, (req, res, next) => {
+  knex("users")
+    .where("id", req.claim.userId)
+    // .select(["id", "email"])
+    .first()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      return next(err);
+    });
 
-//   console.log(userId);
+});
 
-//   if (isNaN(userId) || userId < 0) { return next("Invalid User ID"); }
-
-//   knex("users")
-//     .where("id", userId)
-//     // .select(["id", "email"])
-//     .first()
-//     .then((result) => {
-//       res.send(true);
-//     })
-//     .catch((err) => {
-//       return next(err);
-//     });
-
-// });
-
-router.patch("/users", (req, res, next) => {
+router.patch("/users", authorizeUser, (req, res, next) => {
   let data = {};
-  const userId = parseInt(req.claim.userId);
-  
-  if (isNaN(userId) || userId < 0) { return next(createError(400, "Invalid User ID")); }
 
   if (req.body.username) {
     if (req.body.username.length < 4) { return next(createError(400, "Username must be at least 4 characters long")); }
@@ -71,7 +62,7 @@ router.patch("/users", (req, res, next) => {
     data.avatar = req.body.avatar;
   }
 
-  data.id = userId;
+  data.id = req.claim.userId;
 
 
   checkUserOrEmailExists(data.username, data.email)
