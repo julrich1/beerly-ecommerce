@@ -27,6 +27,7 @@ export class ProductDisplayComponent implements OnInit {
   }
 
   add(product): void {
+    console.log("PRODUCT QUANTITY IN DISPLAY COMPONENT:", product.quantity)
     this.productService.addToCart(product).then(() => {
       //Do something?
     });

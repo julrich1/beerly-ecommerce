@@ -55,18 +55,18 @@ export class ProductService {
   }
 
   addToCart(product): Promise<void> {
-    product.quantity = 1;
-    return this.http.post(`${this.cartUrl}`, product, {headers: this.headers})
+    const newProduct = Object.assign({}, product, {quantity: 1});
+
+    return this.http.post(`${this.cartUrl}`, newProduct, {headers: this.headers})
       .toPromise()
       .then((response) => {
         console.log("product added");
-        // this.cart.push(product);
         
         let found = false;
 
         for (let p of this.cart) {
-          if (p.id === product.id) {
-            p.quantity += product.quantity;
+          if (p.id === newProduct.id) {
+            p.quantity += newProduct.quantity;
             found = true;
           }
         }
