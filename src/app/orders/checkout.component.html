@@ -14,5 +14,7 @@ Ship To:
   <input name="state" type="text" [(ngModel)]="userService.user.state" required>
   <label for="zip">Zip</label>
   <input name="zip" type="text" [(ngModel)]="userService.user.zip" required>
+  <label for="default">Save as default?</label>
+  <input name="default" type="checkbox" ngModel>
   <button type="submit">Next</button>
 </form>

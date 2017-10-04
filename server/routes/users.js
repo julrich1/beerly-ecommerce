@@ -41,63 +41,40 @@ router.get("/users", authorizeUser, (req, res, next) => {
 });
 
 router.patch("/users", authorizeUser, (req, res, next) => {
-  let data = {};
+  let data = req.body;
 
-  if (req.body.username) {
-    if (req.body.username.length < 4) { return next(createError(400, "Username must be at least 4 characters long")); }
-    else if (req.body.username.length > 20) { return next(createError(400, "Username must be 20 character or less")); }
-    else if (req.body.username.match(/\W/g)) { return next(createError(400,"Username contains invalid characters")); }
-    data.username = req.body.username;
-  }
-  if (req.body.password) {
-    if (req.body.password.length < 4) { return next(createError(400, "Password must be at least 4 characters long")); }
-  }
-  if (req.body.email) {
-    if (req.body.email.length < 6) { return next(createError(400, "Email must be at least 5 characters long")); }
-    else if (req.body.email.match(/[^0-9a-z@.-]/ig)) { return next(createError(400, "Email contains invalid characters")); }    
-    data.email = req.body.email.toLowerCase();
-  }
-  if (req.body.avatar) {
-    if (req.body.avatar.length !== 6) { return next(createError(400, "Invalid avatar")); }      
-    data.avatar = req.body.avatar;
-  }
-
+  // TO-DO: Better validation here - Make sure users cannot pass params outside of scope.
   data.id = req.claim.userId;
 
+  // checkUserOrEmailExists(data.username, data.email)
+  // .then((result) => {
+  // if (result !== false) {
+  //   throw createError(400, "Username or email address already exists");
+  // }
 
-  checkUserOrEmailExists(data.username, data.email)
-    .then((result) => {
-      if (result !== false) {
-        throw createError(400, "Username or email address already exists");
-      }
+  // const promises = [];
 
-      const promises = [];
+  // if (req.body.password) {
+  //   promises.push(bcrypt.hash(req.body.password, 12));
+  // }
+  // else {
+  //   promises.push(new Promise((resolve, reject) => { resolve(null); }));
+  // }
 
-      if (req.body.password) {
-        promises.push(bcrypt.hash(req.body.password, 12));
-      }
-      else {
-        promises.push(new Promise((resolve, reject) => { resolve(null); }));
-      }
+  // return Promise.all(promises);
+  // })
+  // .then((result) => {
+  // if (result[0]) {
+  // data.hashed_password = result[0];
+  // }
 
-      if (data.avatar) {
-        promises.push(saveAvatar(data.avatar, data.id));
-      }
-
-      return Promise.all(promises);
-    })
-    .then((result) => {
-      if (result[0]) {
-        data.hashed_password = result[0];
-      }
-      return knex("users").update(data).where("id", data.id).returning("*");
-    })
+  knex("users").update(data).where("id", data.id).returning("*")
     .then((result) => {
       result = result[0];
-      setCookie({ userId: result.id, username: result.username }, res, router);
+      // setCookie({ userId: result.id, username: result.username }, res, router);
       delete result.hashed_password;
       
-      userManager.changedProfile(result);
+      // userManager.changedProfile(result);
       res.send(result);     
     })
     .catch((err) => {

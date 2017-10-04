@@ -33,6 +33,20 @@ export class CheckoutComponent implements OnInit {
 
   submit(shipForm: NgForm): void {
     console.log(shipForm.value);
-    this.router.navigateByUrl("/summary");
+    
+    if (shipForm.value.default) {
+      const user = shipForm.value;
+      user.id = this.userService.user.id;
+      delete user.default;
+
+      this.userService.updateUser(user)
+        .then((result) => {
+          this.router.navigateByUrl("/summary");
+        });
+    }
+    else {
+      this.router.navigateByUrl("/summary");
+    }
+
   }
 }

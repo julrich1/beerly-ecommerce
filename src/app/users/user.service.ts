@@ -85,4 +85,13 @@ export class UserService implements OnInit {
         // return response.json();
       })
   }
+
+  updateUser(user): Promise<void> {
+
+    return this.http.patch(this.usersUrl, user, {headers: this.headers})
+      .toPromise()
+      .then((response) => {
+        console.log(response);
+      })
+  }
 }
