@@ -9,7 +9,11 @@
     <a routerLink="/cart">{{productService.cart.length}} Cart</a>
   </div>
   <div class="navbar">
-    Belgians - IPAs - Sours - Ciders - Ales
+    <a [routerLink]="['/products/category/belgians']">Belgians</a> - 
+    <a [routerLink]="['/products/category/ipas']">IPAs</a> - 
+    <a [routerLink]="['/products/category/sours']">Sours</a> - 
+    <a [routerLink]="['/products/category/ciders']">Ciders</a> - 
+    <a [routerLink]="['/products/category/ales']">Ales</a>
   </div>
   <div class="main">
     <router-outlet></router-outlet>      

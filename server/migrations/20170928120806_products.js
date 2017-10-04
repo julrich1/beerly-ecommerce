@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
     table.decimal("price", 14, 2).notNullable();
     table.decimal("rating");
     table.string("image_url");
+    table.string("category");
     table.timestamps(true, true);
   });
 };

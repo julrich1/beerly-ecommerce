@@ -28,6 +28,20 @@ export class ProductService {
       })
   }
 
+  getProductsByCategory(category: string): Promise<Product[]> {
+    return this.http.get(`${this.productsUrl}/category/${category}`, {headers: this.headers})
+      .toPromise()
+      .then((response) => {
+        console.log(response);
+        if (Array.isArray(response.json())) {
+          return response.json();
+        }
+        else {
+          return [];
+        }
+      })
+  }
+
   getProduct(id): Promise<Product> {
     return this.http.get(`${this.productsUrl}/${id}`, {headers: this.headers})
       .toPromise()

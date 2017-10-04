@@ -20,7 +20,7 @@
 
 .navbar {
   grid-area: nav;
-  background-color: blue;
+  background-color: green;
 }
 
 .footer {

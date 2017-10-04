@@ -10,6 +10,7 @@ import { CheckoutComponent } from "./orders/checkout.component";
 import { SummaryComponent } from "./orders/summary.component";
 import { OrderComponent } from "./orders/order.component";
 import { OrderHistoryComponent } from "./orders/order-history.component";
+import { ProductListComponent } from "./products/product-list.component";
  
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: "checkout", component: CheckoutComponent },
   { path: "summary", component: SummaryComponent },
   { path: "order/:id", component: OrderComponent },
-  { path: "order-history", component: OrderHistoryComponent }  
+  { path: "order-history", component: OrderHistoryComponent },
+  { path: "products/category/:category", component: ProductListComponent }
 ];
  
 @NgModule({
