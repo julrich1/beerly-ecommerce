@@ -2,19 +2,19 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 20px 20px;
-  width: 800px;
 }
 
 .product-display-left {
   grid-column-start: 1;
-  text-align: center;
-  justify-self: center;  
+  align-self: center;
+  justify-self: right;
 }
 
 .product-display-right {
+  margin-left: 20px;
   grid-column-start: 2;
-  text-align: center;  
-  justify-self: center;
+  /* align-self: top; */
+  justify-self: left;
 }
 
 .product-display-image {

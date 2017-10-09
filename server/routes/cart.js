@@ -29,7 +29,7 @@ router.post("/cart", authorizeUser, (req, res, next) => {
 });
 
 router.get("/cart", authorizeUser, (req, res, next) => {
-  knex("carts").where("user_id", req.claim.userId).innerJoin("products", "products.id", "carts.product_id")
+  knex("carts").where("user_id", req.claim.userId).innerJoin("products", "products.id", "carts.product_id").orderBy("carts.created_at")
     .then((result) => {
       console.log(result);
       res.send(result);
