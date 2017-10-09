@@ -1,0 +1,22 @@
+.product-display {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 20px 20px;
+  width: 800px;
+}
+
+.product-display-left {
+  grid-column-start: 1;
+  text-align: center;
+  justify-self: center;  
+}
+
+.product-display-right {
+  grid-column-start: 2;
+  text-align: center;  
+  justify-self: center;
+}
+
+.product-display-image {
+  width: 400px;
+}

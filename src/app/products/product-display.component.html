@@ -1,7 +1,13 @@
-<div *ngIf="product">
-  <img class="product-image" src="/assets/chimay-cinqcents-1000x1000.JPG">    
-  {{product.name}} Rating: {{product.rating}}
-  {{product.description}}
-  ${{product.price}}
-  <a (click)="add(product)">Add to cart</a>
+<div class="product-display">
+  <div class="product-display-left" *ngIf="product">
+    <img class="product-display-image" src="/assets/chimay-cinqcents-1000x1000.JPG">    
+    <p>Rating: {{product.rating}}</p>
+    <p>{{product.description}}</p>
+  
+  </div>
+  <div class="product-display-right" *ngIf="product">
+    <p>{{product.name}}</p>
+    <p>${{product.price}}</p>
+    <a (click)="add(product)">Add to cart</a>
+  </div>
 </div>

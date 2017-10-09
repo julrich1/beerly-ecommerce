@@ -10,7 +10,7 @@ import 'rxjs/add/operator/switchMap';
 @Component({
   selector: 'product-display',
   templateUrl: './product-display.component.html',
-  // styleUrls: ['./app.component.css']
+  styleUrls: ['./product-display.component.css']
 })
 export class ProductDisplayComponent implements OnInit {
   private product: Product;

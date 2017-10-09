@@ -1,24 +1,34 @@
 <div class="site">
   <div class="header">
-    <a href="/"><img src="/assets/placeholder-sample-logo.png"></a>
-    <input type="text" name="search">
-    <button type="submit">Search</button>
-    <a routerLink="/login" *ngIf="!userService.userIsLoggedIn">Login</a>
-    <a routerLink="/register" *ngIf="!userService.userIsLoggedIn">Register</a>
-    <a (click)="logout()" *ngIf="userService.userIsLoggedIn">Logout</a>
-    <a routerLink="/cart">{{productService.cart.length}} Cart</a>
+    <a href="/"><img class="logo" src="/assets/logo.png"></a>
+    <div class="search">
+      <input type="text" name="search"><!--
+      --><button type="submit" class="search-button">Search</button>
+    </div>
+    <div class="auth-container">
+      <button class="auth-buttons"routerLink="/register" *ngIf="!userService.userIsLoggedIn">Register</button>
+      <button class="auth-buttons" routerLink="/login" *ngIf="!userService.userIsLoggedIn">Login</button>
+      <button class="auth-buttons" (click)="logout()" *ngIf="userService.userIsLoggedIn">Logout</button>
+    </div>
+    <div routerLink="/cart" class="cart-container">
+      <span class="cart-count">{{productService.cart.length}}</span>
+      <object type="image/svg+xml" data="/assets/shopping-cart.svg" class="cart"></object>
+    </div>
   </div>
   <div class="navbar">
-    <a [routerLink]="['/products/category/belgians']">Belgians</a> - 
-    <a [routerLink]="['/products/category/ipas']">IPAs</a> - 
-    <a [routerLink]="['/products/category/sours']">Sours</a> - 
-    <a [routerLink]="['/products/category/ciders']">Ciders</a> - 
-    <a [routerLink]="['/products/category/ales']">Ales</a>
+    <a class="category-link" [routerLink]="['/products/category/belgians']">Belgians</a>
+    <a class="category-link" [routerLink]="['/products/category/ipas']">IPAs</a>
+    <a class="category-link" [routerLink]="['/products/category/sours']">Sours</a>
+    <a class="category-link" [routerLink]="['/products/category/ciders']">Ciders</a>
+    <a class="category-link" [routerLink]="['/products/category/ales']">Ales</a>
   </div>
   <div class="main">
     <router-outlet></router-outlet>      
   </div>
   <div class="footer">
-    <a href="#">Contact</a> <a href="#">About</a>
+    <div class="footer-right">
+      <a class="footer-link" href="#">Contact</a>
+      <a class="footer-link" href="#">About</a>
+    </div>
   </div>
 </div>

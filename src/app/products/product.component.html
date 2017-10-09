@@ -1,7 +1,7 @@
 <div class="product">
-  <a [routerLink]="['/product', product.id]">
+  <a class="product-link" [routerLink]="['/product', product.id]">
     <img class="product-image" src="/assets/chimay-cinqcents-1000x1000.JPG">
-    <div>{{product.name}}</div>
-    <div class="product-price">${{product.price}}</div>
+    <p class="product-name">{{product.name}}</p>
+    <p class="product-price">${{product.price}}</p>
   </a>
 </div>
