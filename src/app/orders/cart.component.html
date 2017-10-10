@@ -1,4 +1,26 @@
-<div *ngFor="let product of productService.cart">
-  {{product.quantity}}x {{product.name}} <img width="20px" src="/assets/remove icon.png" (click)="removeFromCart(product)">
+<div class="cart-display">
+  <div class="cart-display-left">
+    <div *ngFor="let product of productService.cart" class="cart-product-container">
+      <div class="cart-image-container">
+        <img class="cart-display-image" src="/assets/chimay-cinqcents-1000x1000.JPG">
+      </div>
+      <div class="cart-display-description">
+        <p>{{product.name}}</p>
+        <button (click)="removeFromCart(product)">Remove</button>
+      </div>
+      <div class="cart-display-quantity">
+        <p>{{product.quantity}}</p>
+      </div>
+      <div class="cart-display-subtotal">
+        ${{product.price * product.quantity}}
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-display-right">
+    <p>Payment details:</p>
+    <p>VISA Mastercard AMEX</p>
+    <p><b>Total: $500.43</b></p>
+    <button routerLink="/checkout">Checkout</button>
+  </div>
 </div>
-<button routerLink="/checkout">Checkout</button>

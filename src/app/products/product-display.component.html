@@ -6,11 +6,14 @@
     <p>{{product.description}}</p>
   </div>
   <div class="product-display-right" *ngIf="product">
-    <p>{{product.name}}</p>
-    <p>${{product.price}}</p>
-    <select [(ngModel)]="quantity" name="quantity">
-      <option *ngFor="let qty of quantities" ngValue="{{qty}}">{{qty}}</option>
-    </select>
-    <button (click)="add(product)">Add to cart</button>
+    <p class="product-name">{{product.name}}</p>
+    <p class="product-price">${{product.price}}</p>
+    <p>
+      <label for="quantity">Quantity</label>
+      <select [(ngModel)]="quantity" name="quantity" class="quantity-selector">
+        <option *ngFor="let qty of quantities" ngValue="{{qty}}">{{qty}}</option>
+      </select>
+    </p>
+    <button class="add-button" (click)="add(product)">Add to cart</button>
   </div>
 </div>

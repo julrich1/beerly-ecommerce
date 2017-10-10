@@ -11,12 +11,35 @@
 }
 
 .product-display-right {
+  width: 100%;
   margin-left: 20px;
   grid-column-start: 2;
   /* align-self: top; */
   justify-self: left;
+  text-align: left;
 }
 
 .product-display-image {
   width: 400px;
+}
+
+.product-name,
+.product-price {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.add-button {
+  margin: 0px;
+  width: 200px;
+}
+
+.quantity-selector {
+    font-size: 16px;
+    height: 29px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
 }

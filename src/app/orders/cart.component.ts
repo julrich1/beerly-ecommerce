@@ -10,7 +10,7 @@ import { ProductService } from "../products/product.service";
 @Component({
   selector: 'cart',
   templateUrl: './cart.component.html',
-  // styleUrls: ['./app.component.css']
+  styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
   // private product: Product;

@@ -1,0 +1,93 @@
+label {
+  display: block;
+  text-align: left;
+  font-size: 18px;
+}
+
+input[type="checkbox"] {
+  /* Need custom styling here - Browser doesn't allow scaling of checkboxes */
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin: 0 auto;
+}
+
+button {
+  width: 200px;
+}
+
+button:disabled {
+  background-color: #C7C7C7;
+  cursor: not-allowed;
+}
+
+h2 {
+  display: inline-block;
+  border-bottom: 1px #AFAFAF solid;
+  width: 500px;
+  padding-bottom: 20px;
+}
+
+p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+.error {
+}
+
+.center-align {
+  text-align: center;
+}
+
+.right-align {
+  border-top: 1px #AFAFAF solid;
+  text-align: right;
+  width: 500px;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.left-align {
+  text-align: left;
+  width: 500px;
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.inline-label {
+  display: inline-block;
+}
+
+.checkout-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* width: 600px; */
+}
+
+.checkout-block {
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  vertical-align: top;
+}
+
+.long-input {
+  width: 500px;
+}
+
+.short-input {
+  width: 248px;
+}
