@@ -16,9 +16,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   onSubmit(form: NgForm): void {
-    console.log("FORM", form);
-    this.userService.login(form.value).then((result) => {
-      
+    this.userService.login(form.value).then((result) => {      
       console.log(result);
       this.location.back();
     });

@@ -3,7 +3,7 @@
     <div *ngFor="let product of productService.cart" class="cart-product-container">
       <div class="cart-image-container">
         <a [routerLink]="['/product', product.id]">
-          <img class="cart-display-image" src="/assets/chimay-cinqcents-1000x1000.JPG">
+          <img class="cart-display-image" src="/assets/beers/{{product.image}}">
         </a>
       </div>
       <div class="cart-display-description">
@@ -16,7 +16,7 @@
         <p>Quantity: {{product.quantity}}</p>
       </div>
       <div class="cart-display-subtotal">
-        <p>${{product.price * product.quantity}}</p>
+        <p>${{(product.price * product.quantity).toFixed(2)}}</p>
       </div>
     </div>
   </div>
@@ -24,9 +24,10 @@
   <div class="cart-display-right">
     <p>Payment</p>
     <p>VISA Mastercard AMEX OTHER CARDS HERE</p>
-    <p>Shipping: $13.00</p>
-    <p>Tax: $1.10</p>
-    <p><b>Total: $500.43</b></p>
+    <p>Subtotal: ${{productService.cartTotal}}</p>
+    <p>Shipping: ${{13.00}}</p>
+    <p>Tax: ${{(productService.cartTotal * .097).toFixed(2)}}</p>
+    <p><b>Total: ${{(productService.cartTotal + 13.00 + (productService.cartTotal * .097)).toFixed(2)}}</b></p>
     <button routerLink="/checkout">Checkout</button>
   </div>
 </div>

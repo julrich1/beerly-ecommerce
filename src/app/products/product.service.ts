@@ -14,6 +14,7 @@ export class ProductService {
   private headers = new Headers({'Content-Type': 'application/json'});
 
   public cart: Array<Product> = [];
+  public cartTotal: number = 0;
 
   constructor(
     private http: Http,
@@ -24,7 +25,11 @@ export class ProductService {
     return this.http.get(this.productsUrl, {headers: this.headers})
       .toPromise()
       .then((response) => {
-        return response.json();
+        return response.json().reduce((acc, product) => {
+          acc.push(new Product(product.id, product.name, product.description, product.price, product.rating, 1, product.image_url));
+
+          return acc;
+        }, []);
       })
   }
 
@@ -32,9 +37,12 @@ export class ProductService {
     return this.http.get(`${this.productsUrl}/category/${category}`, {headers: this.headers})
       .toPromise()
       .then((response) => {
-        console.log(response);
         if (Array.isArray(response.json())) {
-          return response.json();
+          return response.json().reduce((acc, product) => {
+            acc.push(new Product(product.id, product.name, product.description, product.price, product.rating, 1, product.image_url));
+  
+            return acc;
+          }, []);
         }
         else {
           return [];
@@ -50,11 +58,11 @@ export class ProductService {
         const product: any = response.json();
         console.log(product);
         // return new Product(1,"asdf", "asdf", 5.00, 4);
-        return new Product(product.id, product.name, product.description, product.price, product.rating, 1);
+        return new Product(product.id, product.name, product.description, product.price, product.rating, 1, product.image_url);
       })
   }
 
-  getHighlightProducts(): Product[] {
+  getHighlightProducts(): Array<Product> {
     const result = [];
 
     this.getProducts().then((products) => {
@@ -84,6 +92,8 @@ export class ProductService {
         }
 
         if (!found) { this.cart.push(newProduct); }
+
+        this.setCartTotal();
       })
   }
 
@@ -91,13 +101,22 @@ export class ProductService {
     return this.http.get(`${this.cartUrl}`, {headers: this.headers})
       .toPromise()
       .then((response) => {
-        console.log(response.json());
         const products = response.json();
         this.cart = products.reduce((acc, product) => {
-          acc.push(product);
+          acc.push(new Product(product.id, product.name, product.description, product.price, product.rating, 1, product.image_url));
           return acc;
         }, []);
+        this.setCartTotal();
       })
+  }
+
+  setCartTotal(): void {
+    const total = this.cart.reduce((acc, product) => {
+      acc += product.price * product.quantity;
+      return acc;
+    }, 0)
+
+    this.cartTotal = parseFloat(total.toFixed(2));
   }
 
   deleteFromCart(product): Promise<void> {
@@ -106,10 +125,10 @@ export class ProductService {
       .then((result) => {
         const products = result.json();
         this.cart = products.reduce((acc, product) => {
-          acc.push(product);
+          acc.push(new Product(product.id, product.name, product.description, product.price, product.rating, 1, product.image_url));
           return acc;
         }, []);
-
+        this.setCartTotal();
       })
   }
 

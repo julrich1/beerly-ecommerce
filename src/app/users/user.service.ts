@@ -23,10 +23,11 @@ export class UserService implements OnInit {
     return this.http.post(this.usersUrl, JSON.stringify(user), {headers: this.headers})
       .toPromise()
       .then((response) => {
-        console.log(response);
-        return response[0];
+        return response.json();
       })
-      .catch(console.log);
+      .catch((err) => {
+        throw err;
+      });
   }
 
   isLoggedIn(): Promise<boolean> {
