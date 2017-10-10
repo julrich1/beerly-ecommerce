@@ -2,24 +2,30 @@
   <div class="cart-display-left">
     <div *ngFor="let product of productService.cart" class="cart-product-container">
       <div class="cart-image-container">
-        <img class="cart-display-image" src="/assets/chimay-cinqcents-1000x1000.JPG">
+        <a [routerLink]="['/product', product.id]">
+          <img class="cart-display-image" src="/assets/chimay-cinqcents-1000x1000.JPG">
+        </a>
       </div>
       <div class="cart-display-description">
-        <p>{{product.name}}</p>
+        <a [routerLink]="['/product', product.id]">
+          <p>{{product.name}}</p>
+        </a>
         <button (click)="removeFromCart(product)">Remove</button>
       </div>
       <div class="cart-display-quantity">
-        <p>{{product.quantity}}</p>
+        <p>Quantity: {{product.quantity}}</p>
       </div>
       <div class="cart-display-subtotal">
-        ${{product.price * product.quantity}}
+        <p>${{product.price * product.quantity}}</p>
       </div>
     </div>
   </div>
 
   <div class="cart-display-right">
-    <p>Payment details:</p>
-    <p>VISA Mastercard AMEX</p>
+    <p>Payment</p>
+    <p>VISA Mastercard AMEX OTHER CARDS HERE</p>
+    <p>Shipping: $13.00</p>
+    <p>Tax: $1.10</p>
     <p><b>Total: $500.43</b></p>
     <button routerLink="/checkout">Checkout</button>
   </div>

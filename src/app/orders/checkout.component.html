@@ -4,7 +4,6 @@
   </div>
 
   <form #shipForm="ngForm" (ngSubmit)="submit(shipForm)" novalidate>
-    <p>Is "myForm" valid? {{shipForm.valid}}</p>
     <div>
       <div class="checkout-block">
         <label for="firstname">First name</label>
@@ -130,7 +129,7 @@
   
     <div class="left-align">
       <div class="checkout-block">
-        <input name="default" type="checkbox" ngModel>          
+        <input name="default" type="checkbox" id="default" ngModel>          
         <label for="default" class="inline-label">Save as default</label>      
       </div>
     </div>
