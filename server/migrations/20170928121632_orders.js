@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable("orders", (table) => {
     table.increments();
     table.integer("user_id").references("users.id").onDelete("CASCADE");
-    table.integer("order_number").notNullable();
+    table.bigint("order_number").notNullable();
     table.string("address1").notNullable();
     table.string("address2");
     table.string("city").notNullable();
@@ -13,6 +13,7 @@ exports.up = function(knex, Promise) {
     table.string("phone").notNullable();
     table.string("status");
     table.decimal("tax_percentage");
+    table.decimal("shipping_total");    
     table.timestamps(true, true);    
   });
 };

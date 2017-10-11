@@ -31,6 +31,7 @@ export class SummaryComponent implements OnInit {
     this.productService.submitOrder()
       .then((orderNumber) => {
         const link = ['/order', orderNumber];
+        this.productService.cart = [];
         this.router.navigate(link);    
       })
 

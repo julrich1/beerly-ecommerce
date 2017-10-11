@@ -1,4 +1,5 @@
 Order history here!
 <div *ngFor="let order of orders">
-  <a [routerLink]="['/order', order.id]">{{order.id}}</a>
+  <a [routerLink]="['/order', order.id]">Order: {{order.order_number}}</a>
+  <p>Date:{{order.created_at | date: 'MM/dd/yyyy'}}</p>
 </div>

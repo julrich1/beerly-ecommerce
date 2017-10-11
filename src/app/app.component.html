@@ -10,6 +10,9 @@
       <button class="auth-buttons" routerLink="/login" *ngIf="!userService.userIsLoggedIn">Login</button>
       <button class="auth-buttons" (click)="logout()" *ngIf="userService.userIsLoggedIn">Logout</button>
     </div>
+    <div routerLink="/profile" class="profile-container">
+        <object type="image/svg+xml" data="/assets/user.svg" class="profile"></object>
+    </div>
     <div routerLink="/cart" class="cart-container">
       <span class="cart-count">{{productService.cart.length}}</span>
       <object type="image/svg+xml" data="/assets/shopping-cart.svg" class="cart"></object>

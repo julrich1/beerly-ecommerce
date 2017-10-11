@@ -59,7 +59,7 @@ input {
 .header {
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 100px 1fr 1fr 100px;
+  grid-template-columns: 100px 1fr 1fr 60px 80px;
   grid-area: header;
   background-color: white;
   vertical-align: middle;
@@ -189,21 +189,6 @@ input {
   padding-left: 100px;
 }
 
-.search-button {
-  font-size: 14px;
-  margin-left: 0px;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  padding: 6px 10px;
-  background-color: #F07200;
-  color: white;
-  box-shadow: none;
-  border: 1px black solid;
-  outline: none;
-}
-
 .auth-container {
   display: inline-block;
   grid-column-start: 3;
@@ -214,35 +199,6 @@ input {
 .search-input {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
-}
-
-.cart {
-  width: 30px;
-  pointer-events: none;
-}
-
-.cart-container {
-  display: grid;
-  position: relative;
-  grid-column-start: 4;
-  text-align: center;
-  justify-self: center;
-  align-self: center;
-  cursor: pointer;
-}
-
-.cart-count {
-  position: absolute;
-  top: -15px;
-  right: -15px;
-  color: white;
-  background-color: #F07200;
-  border-radius: 10%;
-  font-size: 10px;
-  line-height: 18px;
-  text-align: center;
-  /* min-width: 10px; */
-  padding: 2px 7px 2px 7px;
 }
 
 .category-link {

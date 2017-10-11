@@ -26,6 +26,10 @@ export class OrderHistoryComponent implements OnInit {
     this.productService.getOrders()
       .then((result) => { 
         console.log(result);
+        // this.orders = result.json().map((order) => {
+        //   const date = new Date(order.created_at);
+        //   order.created_at = 
+        // })
         this.orders = result.json();
         console.log(this.orders);
       });

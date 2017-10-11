@@ -11,6 +11,8 @@ import { SummaryComponent } from "./orders/summary.component";
 import { OrderComponent } from "./orders/order.component";
 import { OrderHistoryComponent } from "./orders/order-history.component";
 import { ProductListComponent } from "./products/product-list.component";
+import { ProfileComponent } from "./users/profile.component";
+import { AddressComponent } from "./users/address.component";
  
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -23,7 +25,9 @@ const routes: Routes = [
   { path: "summary", component: SummaryComponent },
   { path: "order/:id", component: OrderComponent },
   { path: "order-history", component: OrderHistoryComponent },
-  { path: "products/category/:category", component: ProductListComponent }
+  { path: "products/category/:category", component: ProductListComponent },
+  { path: "profile", component: ProfileComponent },
+  { path: "edit-address", component: AddressComponent }  
 ];
  
 @NgModule({

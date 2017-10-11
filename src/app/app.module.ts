@@ -16,6 +16,8 @@ import { RegisterComponent } from "./users/register.component";
 import { SummaryComponent } from "./orders/summary.component";
 import { OrderComponent } from "./orders/order.component";
 import { OrderHistoryComponent } from "./orders/order-history.component";
+import { ProfileComponent } from "./users/profile.component";
+import { AddressComponent } from "./users/address.component";
 
 import { ProductService }     from './products/product.service';
 import { UserService }     from './users/user.service';
@@ -37,7 +39,9 @@ import { AppRoutingModule }     from './app-routing.module';
     CheckoutComponent,
     SummaryComponent,
     OrderComponent,
-    OrderHistoryComponent
+    OrderHistoryComponent,
+    ProfileComponent,
+    AddressComponent
   ],
   imports: [
     BrowserModule,

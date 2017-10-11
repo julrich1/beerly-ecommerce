@@ -1,4 +1,4 @@
-<div class="cart-display">
+<div class="cart-display" *ngIf="productService.cart.length !== 0">  
   <div class="cart-display-left">
     <div *ngFor="let product of productService.cart" class="cart-product-container">
       <div class="cart-image-container">
@@ -22,12 +22,46 @@
   </div>
 
   <div class="cart-display-right">
-    <p>Payment</p>
-    <p>VISA Mastercard AMEX OTHER CARDS HERE</p>
-    <p>Subtotal: ${{productService.cartTotal}}</p>
-    <p>Shipping: ${{13.00}}</p>
-    <p>Tax: ${{(productService.cartTotal * .097).toFixed(2)}}</p>
-    <p><b>Total: ${{(productService.cartTotal + 13.00 + (productService.cartTotal * .097)).toFixed(2)}}</b></p>
-    <button routerLink="/checkout">Checkout</button>
+    <p>Payment Methods</p>
+    <div>
+      <ul>
+        <li><span class="visa-icon payment-icon"></span></li>
+        <li><span class="mastercard-icon payment-icon"></span></li>
+        <li><span class="amex-icon payment-icon"></span></li>
+        <li><span class="discover-icon payment-icon"></span></li>        
+      </ul>
+    </div>
+    <table>
+      <tbody>
+        <tr>
+          <td>Subtotal</td>
+          <td class="right-align">${{productService.cartTotal}}</td>
+        </tr>
+        <tr>
+          <td>Shipping</td>
+          <td class="right-align">${{13.00}}</td>
+        </tr>
+        <tr>
+          <td>Tax</td>
+          <td class="right-align">${{(productService.cartTotal * .097).toFixed(2)}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td class="top-border">Total</td>
+          <td class="right-align top-border">${{(productService.cartTotal + 13.00 + (productService.cartTotal * .097)).toFixed(2)}}</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="checkout-button-container">
+      <button routerLink="/checkout" class="checkout-button">Checkout</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="productService.cart.length === 0" class="empty-cart-container">
+  <div class="empty-cart">
+    <h3>Your cart is empty.</h3>
+    <button routerLink="/">Home</button>
   </div>
 </div>

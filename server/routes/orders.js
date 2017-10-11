@@ -8,16 +8,17 @@ const clearCart = require("../common/cart");
 router.post("/orders", authorizeUser, (req, res, next) => {
   console.log("POST TO ORDERS", req.body);
 
+  const date = new Date();
+
   const user = req.body.user;
   user.user_id = req.claim.userId;
-  user.order_number = 1;
+  user.order_number = date.getMonth() + date.getDay() + date.getFullYear() + user.user_id + date.getTime();
   user.city = "Seattle";
   delete user.id;
   delete user.email;
   delete user.firstname;
   delete user.lastname;
 
-  // console.log(knex("orders").insert(user).toString());
   let orderId = 0;
 
   knex("orders").insert(user).returning("id")
@@ -26,7 +27,7 @@ router.post("/orders", authorizeUser, (req, res, next) => {
       orderId = result[0];
       const products = req.body.cart.map((product) => { 
         console.log(product);
-        const newProduct = { product_id: product.id, order_id: orderId, quantity: 1, price: product.price };
+        const newProduct = { product_id: product.id, order_id: orderId, quantity: product.quantity, price: product.price };
         // product.order_id = result.id;
         // product.quantity = 1;
         return newProduct;
@@ -55,6 +56,8 @@ router.get("/orders", authorizeUser, (req, res, next) => {
 });
 
 router.get("/orders/:id", authorizeUser, (req, res, next) => {
+  // TO-DO: Add checking of user ID to make sure users can only see their orders.
+  
   const orderId = parseInt(req.params.id);
 
   if (isNaN(orderId) || orderId < 0) { next("Invalid order ID"); }

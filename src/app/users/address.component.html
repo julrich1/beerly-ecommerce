@@ -1,0 +1,138 @@
+<div class="checkout-container">
+    <div class="center-align">
+      <h2>Ship To</h2>
+    </div>
+  
+    <form #shipForm="ngForm" (ngSubmit)="submit(shipForm)" novalidate>
+      <div>
+        <div class="checkout-block">
+          <label for="firstname">First name</label>
+          <input
+            class="short-input"
+            name="firstname"
+            type="text"
+            [(ngModel)]="userService.user.firstname"
+            minlength="2"
+            required>
+          <div *ngIf="shipForm.controls['firstname']?.invalid && (shipForm.controls['firstname']?.dirty || shipForm.controls['firstname']?.touched)" class="error">
+            <p *ngIf="shipForm.controls['firstname']?.errors?.required">
+              First name is required
+            </p>
+            <p *ngIf="shipForm.controls['firstname']?.errors?.minlength">
+              First name requires 2 characters
+            </p>
+          </div> 
+        </div>
+    
+        <div class="checkout-block">
+          <label for="lastname">Last name</label>
+          <input
+            class="short-input"
+            name="lastname"
+            type="text"
+            [(ngModel)]="userService.user.lastname"
+            minlength="2"
+            required>
+            <div *ngIf="shipForm.controls['lastname']?.invalid && (shipForm.controls['lastname']?.dirty || shipForm.controls['lastname']?.touched)" class="error">
+              <p *ngIf="shipForm.controls['lastname']?.errors?.required">
+                Last name is required
+              </p>
+              <p *ngIf="shipForm.controls['lastname']?.errors?.minlength">
+                Last name requires 2 characters
+              </p>
+            </div> 
+        </div>
+  
+      </div>
+    
+      <div>
+        <div class="checkout-block">
+          <label for="address1">Address 1</label>
+          <input class="long-input"
+            name="address1" type="text"
+            [(ngModel)]="userService.user.address1"
+            minlength="5"
+            required>
+            <div *ngIf="shipForm.controls['address1']?.invalid && (shipForm.controls['address1']?.dirty || shipForm.controls['address1']?.touched)" class="error">
+              <p *ngIf="shipForm.controls['address1']?.errors?.required">
+                Address is required
+              </p>
+              <p *ngIf="shipForm.controls['address1']?.errors?.minlength">
+                Address requires 5 characters
+              </p>
+            </div> 
+        </div>
+      </div>
+    
+      <div>
+        <div class="checkout-block">
+          <label for="address2">Address 2</label>
+          <input class="long-input" name="address2" type="text" [(ngModel)]="userService.user.address2">
+        </div>
+      </div>
+    
+      <div>
+        <div class="checkout-block">
+          <label for="city">City</label>
+          <input class="short-input"
+            name="city"
+            type="text" 
+            [(ngModel)]="userService.user.city"
+            minlength="2"
+            required>
+          <div *ngIf="shipForm.controls['city']?.invalid && (shipForm.controls['city']?.dirty || shipForm.controls['city']?.touched)" class="error">
+            <p *ngIf="shipForm.controls['city']?.errors?.required">
+              City is required
+            </p>
+            <p *ngIf="shipForm.controls['city']?.errors?.minlength">
+              City requires 2 characters
+            </p>
+          </div> 
+        </div>
+    
+        <div class="checkout-block">
+          <label for="zip">Zipcode</label>
+          <input class="short-input"
+            name="zip"
+            type="text"
+            [(ngModel)]="userService.user.zip"
+            pattern="[0-9]*"
+            minlength="5"
+            required>
+          <div *ngIf="shipForm.controls['zip']?.invalid && (shipForm.controls['zip']?.dirty || shipForm.controls['zip']?.touched)" class="error">
+            <p *ngIf="shipForm.controls['zip']?.errors?.required">
+              Zipcode is required
+            </p>
+            <p *ngIf="shipForm.controls['zip']?.errors?.minlength">
+              Zipcode requires 5 characters
+            </p>
+          </div> 
+        </div>
+      </div>
+    
+      <div class="checkout-block">
+        <label for="state">State</label>
+        <select
+          class="long-input"
+          name="state"
+          [(ngModel)]="userService.user.state"
+          pattern="^((?!Select state).)*$"
+          required>
+          <option *ngFor="let state of states" value="{{state}}">{{state}}</option>
+        </select>
+        <div *ngIf="shipForm.controls['state']?.invalid && (shipForm.controls['state']?.dirty || shipForm.controls['state']?.touched)" class="error">
+            <p *ngIf="shipForm.controls['state']?.errors">
+              State is required
+            </p>
+          </div> 
+      </div>
+      <div>
+        <div class="left-align">
+            <button type="button" routerLink="/profile">Back</button>
+        </div>  
+        <div class="right-align">
+          <button [disabled]="!shipForm.valid || !shipForm.dirty" type="submit">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
