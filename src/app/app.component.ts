@@ -17,11 +17,11 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userService.isLoggedIn().then((loggedIn) => {
-      if (loggedIn) {
-        this.productService.getCart();
-      }
-    });
+    // this.userService.isLoggedIn().then((loggedIn) => {
+    //   if (loggedIn) {
+    //     this.productService.getCart();
+    //   }
+    // });
   }
 
   logout(): void {

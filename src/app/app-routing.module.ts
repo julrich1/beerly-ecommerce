@@ -15,25 +15,28 @@ import { ProfileComponent } from "./users/profile.component";
 import { AddressComponent } from "./users/address.component";
 
 import { LoggedIn } from "./users/loggedin.service";
- 
+
+import { AuthResolver } from "./users/auth-resolver.service";
+
 const routes: Routes = [
-  { path: "", redirectTo: "/home", pathMatch: "full" },
-  { path: "home", component: ProductHighlightsComponent },
+  { path: "", redirectTo: "/home", pathMatch: "full", resolve: { AuthResolver } },
+  { path: "home", component: ProductHighlightsComponent, resolve: { AuthResolver } },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "product/:id", component: ProductDisplayComponent },
-  { path: "cart", component: CartComponent },
+  { path: "cart", component: CartComponent, resolve: { AuthResolver } },
   { path: "checkout", component: CheckoutComponent },
   { path: "summary", component: SummaryComponent },
   { path: "order/:id", component: OrderComponent },
   { path: "order-history", component: OrderHistoryComponent },
   { path: "products/category/:category", component: ProductListComponent },
-  { path: "profile", component: ProfileComponent, canActivate: [LoggedIn] },
+  { path: "profile", component: ProfileComponent, resolve: { AuthResolver }, canActivate: [LoggedIn] },
   { path: "edit-address", component: AddressComponent, canActivate: [LoggedIn] }  
 ];
  
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  exports: [ RouterModule ],
+  providers: [ AuthResolver ]
 })
 export class AppRoutingModule {}

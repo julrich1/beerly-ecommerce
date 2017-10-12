@@ -20,12 +20,7 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.productService.getCart();
-    // this.subtotal = this.productService.cartTotal;
-    // console.log(this.subtotal);
-    // this.shipping = 13.00;
-    // this.tax = parseInt((this.subtotal * .097).toFixed(2));
-    // this.total = parseInt((this.subtotal + this.shipping + this.tax).toFixed(2));
+    // this.productService.getCart();
   }
 
   removeFromCart(product: Product): void {
