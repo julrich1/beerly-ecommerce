@@ -1,6 +1,7 @@
 const API_ROUTE = "/api/";
 
-const knex = require("./knex");
+const path = require("path");
+
 const express = require("express");
 const app = express();
 
@@ -13,6 +14,8 @@ const ordersRoute = require("./routes/orders");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
+const port = process.env.PORT || 8000;
+
 app.use(cookieParser());
 app.use(bodyParser.json());
 
@@ -22,8 +25,10 @@ app.use(API_ROUTE, productsRoute);
 app.use(API_ROUTE, cartRoute);
 app.use(API_ROUTE, ordersRoute);
 
-app.get("/", (req, res) => {
-  res.send("Hi");
+app.use(express.static(path.join(__dirname, "..", "dist")));
+
+app.get("/*", function(req, res) {
+  res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
 
 app.use((err, req, res, next) => {
@@ -32,5 +37,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(8000, () => {
-  console.log("Listening");
+  console.log(`Listening on port ${port}`);
 });
