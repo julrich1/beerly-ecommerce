@@ -178,30 +178,6 @@ input {
 /* .product-link:hover {
 } */
 
-.highlights-banner {
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.search {
-  display: inline-block;
-  align-self: center;
-  padding-left: 100px;
-}
-
-.auth-container {
-  display: inline-block;
-  grid-column-start: 3;
-  text-align: right;
-  align-self: center;
-}
-
-.search-input {
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-}
-
 .category-link {
   text-decoration: none;
   padding: 0px 10px 0px 10px;

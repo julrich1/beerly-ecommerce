@@ -1,0 +1,10 @@
+.highlights-banner {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 100%;
+}
+
+.highlights-banner img {
+  max-width: 100%;
+}
