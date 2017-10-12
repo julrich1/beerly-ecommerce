@@ -128,6 +128,8 @@ export class ProductService {
 
     const order = { cart: this.cart, user: orderDetail };
 
+    console.log(order);
+
     return this.http.post(`${this.orderUrl}`, order, {headers: this.headers})
       .toPromise()
       .then((result) => {

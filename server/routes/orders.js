@@ -8,16 +8,19 @@ const clearCart = require("../common/cart");
 router.post("/orders", authorizeUser, (req, res, next) => {
   console.log("POST TO ORDERS", req.body);
 
-  const date = new Date();
+  // const date = new Date();
 
   const user = req.body.user;
   user.user_id = req.claim.userId;
-  user.order_number = date.getMonth() + date.getDay() + date.getFullYear() + user.user_id + date.getTime();
+  // user.order_number = date.getMonth() + date.getDay() + date.getFullYear() + user.user_id + date.getTime();
   user.city = "Seattle";
   delete user.id;
   delete user.email;
   delete user.firstname;
   delete user.lastname;
+
+
+  console.log("USER:", user);
 
   let orderId = 0;
 
