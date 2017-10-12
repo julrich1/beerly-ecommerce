@@ -12,7 +12,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "knex": "knex --knexfile ./server/knexfile.js",
-    "postinstall": "ng build --aot=false --prod"
+    "postinstall": "ng build --aot=false --prod",
+    "heroku-postbuild": "knex migrate:latest"
   },
   "engines": {
     "node": "~8.2.1",
