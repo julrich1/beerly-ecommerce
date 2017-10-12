@@ -12,7 +12,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "knex": "knex --knexfile ./server/knexfile.js",
-    "postinstall": "ng build --aot --prod"
+    "postinstall": "ng build --aot=false --prod"
   },
   "engines": {
     "node": "~8.2.1",
