@@ -1,0 +1,172 @@
+a {
+  text-decoration: none;
+  color: #474747;
+}
+
+button {
+  margin: 0 auto;
+}
+
+p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #474747;  
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: inline-block;
+}
+
+h3 {
+  margin-bottom: 50px;
+}
+
+h4 {
+  margin: 0;
+  border-bottom: 1px solid #AFAFAF;  
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;  
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+td {
+  padding: 2px;
+}
+
+tfoot {
+  font-weight: bold;
+}
+
+.top-border {
+  border-top: 1px solid #AFAFAF;
+}
+
+.right-align {
+  text-align: right;
+}
+
+.cart-display {
+  display: grid;
+  grid-template-columns: 6fr 4fr;
+  margin: 20px 20px;
+}
+
+.cart-display-left {
+  grid-column-start: 1;
+  align-self: center;
+  justify-self: right;
+  border: 1px solid #AFAFAF;
+  border-radius: 3px 0px 0px 3px;
+  background-color: white;
+}
+
+.cart-display-right {
+  /* margin-left: 20px; */
+  padding: 20px;
+  grid-column-start: 2;
+  justify-self: left;
+  background-color: white;
+  border-width: 1px 1px 1px 0px;
+  border-style: solid;
+  border-color: #AFAFAF;
+  /* border: 1px 1px 1px 0px solid #AFAFAF; */
+  border-radius: 0px 3px 3px 0px;
+  text-align: left;
+  min-width: 300px;
+}
+
+.cart-display-image {
+  width: 200px;
+}
+
+.cart-product-container {
+  display: grid;
+  margin: 10px;
+  grid-template-columns: 1fr 1fr 120px 100px;
+  background-color: white;
+  border-bottom: 1px solid #AFAFAF;
+}
+
+/* Set minimum height if there is only one item in the cart */
+.cart-display-left > :only-of-type {
+  min-height: 300px;
+}
+
+.cart-product-container:last-of-type {
+  border-bottom: none;
+}
+
+.cart-image-container,
+.cart-display-description,
+.cart-display-quantity,
+.cart-display-subtotal {
+  display: inline-block;
+  /* border: 1px orange solid; */
+  margin: 10px;
+}
+
+.cart-display-quantity {
+  text-align: right;
+}
+
+.cart-display-subtotal {
+  text-align: left;
+  font-weight: bold;  
+}  
+
+.cart-display-description {
+  text-align: left;
+}
+
+.payment-icon {
+  display: inline-block;
+  width: 38px;
+  height: 26px;
+  background-image: url("/assets/payment-methods.png");
+  background-size: cover;
+}
+
+.visa-icon {
+  background-position: -39px 0;
+}
+
+.mastercard-icon {
+  background-position: -79px 0;
+}
+
+.amex-icon {
+  background-position: -119px 0;
+}
+
+.discover-icon {
+  background-position: -159px 0;  
+}
+
+.empty-cart-container {
+  display: grid;
+  grid-template-rows: 100px 200px 1fr;
+}
+
+.empty-cart {
+  grid-row-start: 2;
+  display: inline-block;
+}
+
+.checkout-button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.checkout-button {
+  width: 150px;
+}

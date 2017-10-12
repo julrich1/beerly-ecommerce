@@ -1,10 +1,64 @@
-<p>Ship to</p>
-<p>{{userService.user.firstname}} {{userService.user.lastname}}</p>
-<p>{{userService.user.address1}}</p>
-<p *ngIf="userService.user.address2">{{userService.user.address2}}</p>
-<p>{{userService.user.city}}, {{userService.user.state}} {{userService.user.zip}}</p>
+<div class="cart-display" *ngIf="productService.cart.length !== 0">  
+  <div class="cart-display-left">
+    <div *ngFor="let product of productService.cart" class="cart-product-container">
+      <div class="cart-image-container">
+        <a [routerLink]="['/product', product.id]">
+          <img class="cart-display-image" src="/assets/beers/{{product.image}}">
+        </a>
+      </div>
+      <div class="cart-display-description">
+        <a [routerLink]="['/product', product.id]">
+          <p>{{product.name}}</p>
+        </a>
+      </div>
+      <div class="cart-display-quantity">
+        <p>Quantity: {{product.quantity}}</p>
+      </div>
+      <div class="cart-display-subtotal">
+        <p>${{(product.price * product.quantity).toFixed(2)}}</p>
+      </div>
+    </div>
+  </div>
 
-<div *ngFor="let product of productService.cart">
-  {{product.quantity}}x {{product.name}}
+  <div class="cart-display-right">
+    <h4>Ship to</h4>
+    <div>
+      <p>{{userService.user.firstname}} {{userService.user.lastname}}</p>
+      <p>{{userService.user.address1}}</p>
+      <p *ngIf="userService.user.address2">{{userService.user.address2}}</p>
+      <p>{{userService.user.city}}, {{userService.user.state}} {{userService.user.zip}}</p>     
+    </div>
+    <table>
+      <tbody>
+        <tr>
+          <td>Subtotal</td>
+          <td class="right-align">${{productService.cartTotal}}</td>
+        </tr>
+        <tr>
+          <td>Shipping</td>
+          <td class="right-align">${{13.00}}</td>
+        </tr>
+        <tr>
+          <td>Tax</td>
+          <td class="right-align">${{(productService.cartTotal * .097).toFixed(2)}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td class="top-border">Total</td>
+          <td class="right-align top-border">${{(productService.cartTotal + 13.00 + (productService.cartTotal * .097)).toFixed(2)}}</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="checkout-button-container">
+      <button (click)="submitOrder()" class="checkout-button">Place Order</button>
+    </div>
+  </div>
 </div>
-<button (click)="submitOrder()">Place Order</button>
+  
+<div *ngIf="productService.cart.length === 0" class="empty-cart-container">
+  <div class="empty-cart">
+    <h3>Your cart is empty.</h3>
+    <button routerLink="/">Home</button>
+  </div>
+</div>
