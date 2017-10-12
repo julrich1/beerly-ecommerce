@@ -1,7 +1,10 @@
-Summary here:
-Address and stuff here
-{{shipForm}}
+<p>Ship to</p>
+<p>{{userService.user.firstname}} {{userService.user.lastname}}</p>
+<p>{{userService.user.address1}}</p>
+<p *ngIf="userService.user.address2">{{userService.user.address2}}</p>
+<p>{{userService.user.city}}, {{userService.user.state}} {{userService.user.zip}}</p>
+
 <div *ngFor="let product of productService.cart">
-  {{product.name}}
+  {{product.quantity}}x {{product.name}}
 </div>
 <button (click)="submitOrder()">Place Order</button>

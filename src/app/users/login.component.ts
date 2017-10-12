@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Location } from '@angular/common';
+import { Router } from "@angular/router";
 
 import { UserService } from "./user.service";
 import { ProductService } from "../products/product.service";
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private productService: ProductService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {}
 
   onSubmit(form: NgForm): void {
@@ -26,9 +28,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.isLoggedIn().then((res) => {
-      console.log(res);
-    })
+    if (this.userService.userIsLoggedIn) {
+      this.router.navigate(["home"]);
+    }
+    // this.userService.isLoggedIn().then((res) => {
+    //   console.log(res);
+    // })
   }
   // products: Array<Product> = [];
   // constructor(private productService: ProductService) {}

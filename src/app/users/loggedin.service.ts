@@ -11,7 +11,7 @@ export class LoggedIn implements CanActivate {
     private router: Router
   ) {}
 
-  canActivate(): Promise<boolean> {
+  canActivate(): Promise<boolean> {    
     return this.userService.isLoggedIn().then((res) => {
       if (res) { return res; }
       

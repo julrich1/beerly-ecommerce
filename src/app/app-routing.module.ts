@@ -21,17 +21,17 @@ import { AuthResolver } from "./users/auth-resolver.service";
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full", resolve: { AuthResolver } },
   { path: "home", component: ProductHighlightsComponent, resolve: { AuthResolver } },
-  { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent },
-  { path: "product/:id", component: ProductDisplayComponent },
+  { path: "login", component: LoginComponent, resolve: { AuthResolver } },
+  { path: "register", component: RegisterComponent, resolve: { AuthResolver } },
+  { path: "product/:id", component: ProductDisplayComponent, resolve: { AuthResolver } },
   { path: "cart", component: CartComponent, resolve: { AuthResolver } },
-  { path: "checkout", component: CheckoutComponent },
-  { path: "summary", component: SummaryComponent },
-  { path: "order/:id", component: OrderComponent },
-  { path: "order-history", component: OrderHistoryComponent },
-  { path: "products/category/:category", component: ProductListComponent },
+  { path: "checkout", component: CheckoutComponent, resolve: { AuthResolver } },
+  { path: "summary", component: SummaryComponent, resolve: { AuthResolver } },
+  { path: "order/:id", component: OrderComponent, resolve: { AuthResolver } },
+  { path: "order-history", component: OrderHistoryComponent, resolve: { AuthResolver } },
+  { path: "products/category/:category", component: ProductListComponent, resolve: { AuthResolver } },
   { path: "profile", component: ProfileComponent, resolve: { AuthResolver }, canActivate: [LoggedIn] },
-  { path: "edit-address", component: AddressComponent, canActivate: [LoggedIn] }  
+  { path: "edit-address", component: AddressComponent, resolve: { AuthResolver }, canActivate: [LoggedIn] }  
 ];
  
 @NgModule({
