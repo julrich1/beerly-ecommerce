@@ -80,9 +80,10 @@ export class ProductService {
             found = true;
           }
         }
+        console.log("Was it found?", found);
+        if (!found) { this.cart.push(new Product(newProduct.id, newProduct.name, newProduct.description, newProduct.price, newProduct.rating, newProduct.quantity, newProduct.image_url)); }
 
-        if (!found) { this.cart.push(newProduct); }
-
+        console.log("Cart - ", this.cart);
         this.setCartTotal();
       })
   }
@@ -156,7 +157,7 @@ export class ProductService {
   private mapProducts(products): Product[] {
     console.log(products);
     return products.map((product) => {
-      return new Product(product.id, product.name, product.description, product.price, product.rating, 1, product.image_url);
+      return new Product(product.id, product.name, product.description, product.price, product.rating, product.quantity, product.image_url);
     });
   }
 }
