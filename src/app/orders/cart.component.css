@@ -50,55 +50,48 @@ tfoot {
   text-align: right;
 }
 
-.cart-display {
-  display: grid;
-  grid-template-columns: 6fr 4fr;
-  margin: 20px 20px;
-}
-
 .cart-display-left {
-  grid-column-start: 1;
   align-self: center;
   justify-self: right;
   border: 1px solid #AFAFAF;
-  border-radius: 3px 0px 0px 3px;
   background-color: white;
 }
 
 .cart-display-right {
-  /* margin-left: 20px; */
   padding: 20px;
-  grid-column-start: 2;
   justify-self: left;
-  background-color: white;
-  border-width: 1px 1px 1px 0px;
+  background-color: white;  
   border-style: solid;
   border-color: #AFAFAF;
-  /* border: 1px 1px 1px 0px solid #AFAFAF; */
-  border-radius: 0px 3px 3px 0px;
   text-align: left;
   min-width: 300px;
 }
 
 .cart-display-image {
-  width: 200px;
+  width: 100%;
+  /* max-width: 200px; */
+  min-width: 60px;  
 }
 
 .cart-product-container {
   display: grid;
   margin: 10px;
-  grid-template-columns: 1fr 1fr 120px 100px;
+  grid-template-columns: auto auto auto 100px;
   background-color: white;
   border-bottom: 1px solid #AFAFAF;
 }
 
-/* Set minimum height if there is only one item in the cart */
-.cart-display-left > :only-of-type {
-  min-height: 300px;
-}
-
 .cart-product-container:last-of-type {
   border-bottom: none;
+}
+
+.cart-image-container {
+  max-width: 200px;
+}
+
+.cart-display-quantity {
+  max-width: 150px;
+  min-width: 100px;
 }
 
 .cart-image-container,
@@ -164,4 +157,50 @@ tfoot {
 
 .checkout-button {
   width: 150px;
+}
+
+@media only screen and (max-width: 800px)  {
+  .cart-display {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 20px 20px;
+  }
+
+  .cart-display-left {
+    grid-row-start: 1;
+    border-radius: 3px 3px 0px 0px;
+    width: 100%;
+  }  
+
+  .cart-display-right {
+    grid-row-start: 2;
+    border-width: 0px 1px 1px 1px;
+    border-radius: 0px 0px 3px 3px;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 800px)  {
+  .cart-display {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    margin: 20px 20px;
+  }
+
+  .cart-display-left {
+    grid-column-start: 1;
+    border-radius: 3px 0px 0px 3px;
+  }  
+
+  .cart-display-right {
+    grid-column-start: 2;
+    border-width: 1px 1px 1px 0px;
+    border-radius: 0px 3px 3px 0px;  
+  } 
+
+  /* Set minimum height if there is only one item in the cart */
+  .cart-display-left > :only-of-type {
+    min-height: 300px;
+  }
 }

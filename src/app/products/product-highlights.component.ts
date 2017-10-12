@@ -7,7 +7,7 @@ import { ProductService } from "./product.service";
 @Component({
   selector: 'product-highlights',
   templateUrl: './product-highlights.component.html',
-  // styleUrls: ['./app.component.css']
+  styleUrls: ['./product-highlights.component.css']
 })
 export class ProductHighlightsComponent implements OnInit {
   products: Array<Product> = [];
