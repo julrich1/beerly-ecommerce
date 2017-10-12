@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { Product } from "./product";
 
 import { ProductService } from "./product.service";
+import { UserService } from "../users/user.service";
 
 import 'rxjs/add/operator/switchMap';
 
@@ -19,7 +21,9 @@ export class ProductDisplayComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute,    
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private router: Router
   ) {
     this.quantities = new Array(100).fill(0);
     this.quantities = this.quantities.map((val, index) => index+1);
@@ -32,11 +36,13 @@ export class ProductDisplayComponent implements OnInit {
   }
 
   add(product): void {
-    console.log("QTY TESTING:", this.quantity);
-    // product.quantity = parseInt(this.quantity);
-    console.log("PRODUCT QUANTITY IN DISPLAY COMPONENT:", product.quantity)
-    this.productService.addToCart(product, parseInt(this.quantity)).then(() => {
-      //Do something?
-    });
+    if (this.userService.userIsLoggedIn) {
+      this.productService.addToCart(product, parseInt(this.quantity)).then(() => {
+        //TO-DO: Show added to cart notification
+      });
+    }
+    else {
+      this.router.navigateByUrl("login");
+    }
   }
 }

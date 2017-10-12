@@ -25,11 +25,7 @@ export class ProductService {
     return this.http.get(this.productsUrl, {headers: this.headers})
       .toPromise()
       .then((response) => {
-        return response.json().reduce((acc, product) => {
-          acc.push(new Product(product.id, product.name, product.description, product.price, product.rating, 1, product.image_url));
-
-          return acc;
-        }, []);
+        return this.mapProducts(response.json());
       })
   }
 
@@ -38,11 +34,7 @@ export class ProductService {
       .toPromise()
       .then((response) => {
         if (Array.isArray(response.json())) {
-          return response.json().reduce((acc, product) => {
-            acc.push(new Product(product.id, product.name, product.description, product.price, product.rating, 1, product.image_url));
-  
-            return acc;
-          }, []);
+          return this.mapProducts(response.json());
         }
         else {
           return [];
@@ -54,10 +46,7 @@ export class ProductService {
     return this.http.get(`${this.productsUrl}/${id}`, {headers: this.headers})
       .toPromise()
       .then((response) => {
-        console.log(response.json());
         const product: any = response.json();
-        console.log(product);
-        // return new Product(1,"asdf", "asdf", 5.00, 4);
         return new Product(product.id, product.name, product.description, product.price, product.rating, 1, product.image_url);
       })
   }
@@ -66,6 +55,7 @@ export class ProductService {
     const result = [];
 
     this.getProducts().then((products) => {
+      console.log(products);
       for (let i = 0; i < 4; i++) {
         let random = Math.floor(Math.random() * (products.length - 0)) + 0;
         result.push(products[random]);
@@ -102,10 +92,7 @@ export class ProductService {
       .toPromise()
       .then((response) => {
         const products = response.json();
-        this.cart = products.reduce((acc, product) => {
-          acc.push(new Product(product.id, product.name, product.description, product.price, product.rating, 1, product.image_url));
-          return acc;
-        }, []);
+        this.cart = this.mapProducts(products);
         this.setCartTotal();
       })
   }
@@ -124,22 +111,12 @@ export class ProductService {
       .toPromise()
       .then((result) => {
         const products = result.json();
-        this.cart = products.reduce((acc, product) => {
-          acc.push(new Product(product.id, product.name, product.description, product.price, product.rating, 1, product.image_url));
-          return acc;
-        }, []);
+        this.cart = this.mapProducts(products);
         this.setCartTotal();
       })
   }
 
   submitOrder(): Promise<number> {
-    // this.userService.user.address1 = "1 main st";
-    // this.userService.user.address2 = "Apt 1";
-    // this.userService.user.zip = 98122;
-    // this.userService.user.phone = 5555555555;
-    // this.userService.user.country = "USA";
-    // this.userService.user.state = "Washington";
-
     const orderDetail = {
       address1: this.userService.user.address1,
       address2: this.userService.user.address2,
@@ -154,7 +131,6 @@ export class ProductService {
     return this.http.post(`${this.orderUrl}`, order, {headers: this.headers})
       .toPromise()
       .then((result) => {
-        console.log(result.json());
         return result.json().orderId;
       });
   }
@@ -163,7 +139,6 @@ export class ProductService {
     return this.http.get(`${this.orderUrl}`, {headers: this.headers})
       .toPromise()
       .then((response) => {
-        console.log(response);
         return response;
       })
   }
@@ -174,5 +149,12 @@ export class ProductService {
       .then((response) => {
         return response;
       })
+  }
+
+  private mapProducts(products): Product[] {
+    console.log(products);
+    return products.map((product) => {
+      return new Product(product.id, product.name, product.description, product.price, product.rating, 1, product.image_url);
+    });
   }
 }

@@ -90,6 +90,10 @@ tfoot {
   grid-template-columns: 1fr 1fr 120px 100px;
   background-color: white;
   border-bottom: 1px solid #AFAFAF;
+}
+
+/* Set minimum height if there is only one item in the cart */
+.cart-display-left > :only-of-type {
   min-height: 300px;
 }
 

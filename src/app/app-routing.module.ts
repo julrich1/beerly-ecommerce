@@ -13,6 +13,8 @@ import { OrderHistoryComponent } from "./orders/order-history.component";
 import { ProductListComponent } from "./products/product-list.component";
 import { ProfileComponent } from "./users/profile.component";
 import { AddressComponent } from "./users/address.component";
+
+import { LoggedIn } from "./users/loggedin.service";
  
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -26,8 +28,8 @@ const routes: Routes = [
   { path: "order/:id", component: OrderComponent },
   { path: "order-history", component: OrderHistoryComponent },
   { path: "products/category/:category", component: ProductListComponent },
-  { path: "profile", component: ProfileComponent },
-  { path: "edit-address", component: AddressComponent }  
+  { path: "profile", component: ProfileComponent, canActivate: [LoggedIn] },
+  { path: "edit-address", component: AddressComponent, canActivate: [LoggedIn] }  
 ];
  
 @NgModule({

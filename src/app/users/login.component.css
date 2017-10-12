@@ -1,0 +1,27 @@
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  margin-bottom: 20px;
+}
+
+button {
+  width: 100px;
+  margin: 0px;
+}
+
+.login-container {
+  margin: 100px 20px 20px 20px;
+  display: inline-block;
+  width: 300px;
+}
+
+.container-left {
+  text-align: left;
+}
+
+.container-right {
+  text-align: right;
+}

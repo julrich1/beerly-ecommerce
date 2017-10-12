@@ -7,7 +7,7 @@ import { UserService } from "./user.service";
 @Component({
   selector: 'register',
   templateUrl: './register.component.html',
-  // styleUrls: ['./app.component.css']
+  styleUrls: ['./register.component.css']
 })
 
 export class RegisterComponent {

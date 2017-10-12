@@ -3,22 +3,25 @@ import { NgForm } from '@angular/forms';
 import { Location } from '@angular/common';
 
 import { UserService } from "./user.service";
+import { ProductService } from "../products/product.service";
 
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
-  // styleUrls: ['./app.component.css']
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
+    private productService: ProductService,
     private location: Location
   ) {}
 
   onSubmit(form: NgForm): void {
-    this.userService.login(form.value).then((result) => {      
-      console.log(result);
-      this.location.back();
+    this.userService.login(form.value).then((result) => {
+      this.productService.getCart().then((result) => {
+        this.location.back();
+      })
     });
   }
 

@@ -1,3 +1,8 @@
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
 .product-display {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -8,10 +13,12 @@
   grid-column-start: 1;
   align-self: center;
   justify-self: right;
+  text-align: right;
+  width: 400px;
 }
 
 .product-display-right {
-  width: 100%;
+  /* width: 100%; */
   margin-left: 20px;
   grid-column-start: 2;
   /* align-self: top; */
@@ -29,6 +36,10 @@
   font-weight: bold;
 }
 
+.product-details {
+  text-align: left;
+}
+
 .add-button {
   margin: 0px;
   width: 200px;
@@ -37,9 +48,4 @@
 .quantity-selector {
     font-size: 16px;
     height: 29px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
 }

@@ -21,6 +21,7 @@ import { AddressComponent } from "./users/address.component";
 
 import { ProductService }     from './products/product.service';
 import { UserService }     from './users/user.service';
+import { LoggedIn }     from './users/loggedin.service';
 
 import { AppRoutingModule }     from './app-routing.module';
 
@@ -50,7 +51,7 @@ import { AppRoutingModule }     from './app-routing.module';
     AppRoutingModule,
     HttpModule
   ],
-  providers: [ProductService, UserService],
+  providers: [ProductService, UserService, LoggedIn],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

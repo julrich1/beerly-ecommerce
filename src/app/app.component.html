@@ -1,6 +1,6 @@
 <div class="site">
   <div class="header">
-    <a href="/"><img class="logo" src="/assets/logo.png"></a>
+    <a routerLink="/"><img class="logo" src="/assets/logo.png"></a>
     <div class="search">
       <input class="search-input" type="text" name="search"><!--
       --><button type="submit" class="search-button">Search</button>
@@ -10,7 +10,7 @@
       <button class="auth-buttons" routerLink="/login" *ngIf="!userService.userIsLoggedIn">Login</button>
       <button class="auth-buttons" (click)="logout()" *ngIf="userService.userIsLoggedIn">Logout</button>
     </div>
-    <div routerLink="/profile" class="profile-container">
+    <div *ngIf="userService.userIsLoggedIn" routerLink="/profile" class="profile-container">
         <object type="image/svg+xml" data="/assets/user.svg" class="profile"></object>
     </div>
     <div routerLink="/cart" class="cart-container">

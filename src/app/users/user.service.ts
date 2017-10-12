@@ -1,8 +1,10 @@
 import { Headers, Http } from '@angular/http';
 import { Injectable, OnInit } from '@angular/core';
 import { User } from "./user";
+import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UserService implements OnInit {
@@ -13,10 +15,14 @@ export class UserService implements OnInit {
   public userIsLoggedIn: boolean = false;
   public user: User = new User();
   
-  constructor(private http: Http) {}
+  constructor(
+    private http: Http
+  ) {}
 
   ngOnInit(): void {
-    // this.userIsLoggedIn = this.isLoggedIn();
+    // this.isLoggedIn().then((response) => {
+    //   this.userIsLoggedIn = response;
+    // });
   }
 
   register(user: Object): Promise<User> {
@@ -70,6 +76,7 @@ export class UserService implements OnInit {
       .then((response) => {
         console.log(response);
         this.userIsLoggedIn = false;
+        // this.product
         return false;
       })
       .catch((err) => {
