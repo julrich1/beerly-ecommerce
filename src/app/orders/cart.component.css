@@ -99,8 +99,6 @@ tfoot {
 .cart-display-quantity,
 .cart-display-subtotal {
   display: inline-block;
-  /* border: 1px orange solid; */
-  margin: 10px;
 }
 
 .cart-display-quantity {
@@ -163,7 +161,7 @@ tfoot {
   .cart-display {
     display: grid;
     grid-template-columns: 1fr;
-    margin: 20px 20px;
+    margin: 10px 10px;
   }
 
   .cart-display-left {
@@ -177,6 +175,13 @@ tfoot {
     border-width: 0px 1px 1px 1px;
     border-radius: 0px 0px 3px 3px;
     width: 100%;
+  }
+
+  .cart-image-container,
+  .cart-display-description,
+  .cart-display-quantity,
+  .cart-display-subtotal {
+    margin: 5px;
   }
 }
 
@@ -202,5 +207,12 @@ tfoot {
   /* Set minimum height if there is only one item in the cart */
   .cart-display-left > :only-of-type {
     min-height: 300px;
+  }
+
+  .cart-image-container,
+  .cart-display-description,
+  .cart-display-quantity,
+  .cart-display-subtotal {
+    margin: 10px;
   }
 }
