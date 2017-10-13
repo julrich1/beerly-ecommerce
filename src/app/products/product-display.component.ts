@@ -38,7 +38,7 @@ export class ProductDisplayComponent implements OnInit {
 
   add(product): void {
     if (this.userService.userIsLoggedIn) {
-      this.adding = true;      
+      this.adding = true;
       this.productService.addToCart(product, parseInt(this.quantity)).then(() => {
         //TO-DO: Show added to cart notification
         this.adding = false;

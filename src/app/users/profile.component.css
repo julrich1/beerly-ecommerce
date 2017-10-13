@@ -1,0 +1,23 @@
+h3 {
+  color: #474747;  
+  margin-top: 0px;
+}
+
+a {
+  color: #474747;  
+  text-decoration: none;
+  cursor: pointer;  
+}
+
+a:hover {
+  color: #353535;  
+  text-decoration: underline;
+}
+
+.account-container {
+  margin: 30px;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #AFAFAF;
+  display: inline-block;
+}

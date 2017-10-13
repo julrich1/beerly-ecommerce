@@ -81,7 +81,7 @@ export class ProductService {
           }
         }
         console.log("Was it found?", found);
-        if (!found) { this.cart.push(new Product(newProduct.id, newProduct.name, newProduct.description, newProduct.price, newProduct.rating, newProduct.quantity, newProduct.image_url)); }
+        if (!found) { this.cart.push(new Product(newProduct.id, newProduct.name, newProduct.description, newProduct.price, newProduct.rating, newProduct.quantity, newProduct.image)); }
 
         console.log("Cart - ", this.cart);
         this.setCartTotal();

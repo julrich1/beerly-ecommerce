@@ -1,0 +1,43 @@
+
+h3 {
+  margin: 5px 5px 10px 5px;
+  color: #474747;  
+}
+
+p {
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.orders-container {
+  margin: 20px 10px 10px 20px;
+}
+
+.orders {
+  display: inline-block;
+  background-color: white;
+  border: 1px solid #AFAFAF;
+  border-radius: 3px;
+  padding: 10px;
+  margin: 10px;
+  min-width: 200px;
+  text-align: center;
+}
+
+.order {
+  background-color: rgb(240, 240, 240);
+  display: inline-block;
+  margin: 20px;
+  text-align: left;
+  border: 1px solid #AFAFAF;
+  border-radius: 3px;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.order:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);    
+}

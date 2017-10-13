@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Product } from "../products/product";
 
@@ -9,7 +9,7 @@ import { ProductService } from "../products/product.service";
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent {
   private tax: number;
   private subtotal: number;
   private shipping: number;
@@ -18,10 +18,6 @@ export class CartComponent implements OnInit {
   constructor(
     private productService: ProductService
   ) {}
-
-  ngOnInit(): void {
-    // this.productService.getCart();
-  }
 
   removeFromCart(product: Product): void {
     this.productService.deleteFromCart(product);

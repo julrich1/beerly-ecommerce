@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from "@angular/router";
 
 import { UserService } from "../users/user.service";
@@ -6,16 +6,12 @@ import { UserService } from "../users/user.service";
 @Component({
   selector: 'profile',
   templateUrl: './profile.component.html',
-  // styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
-  
+export class ProfileComponent {
+  //TO-DO: This component should probably eliminated and replaced as a drop-down menu on the user profile icon.
   constructor(
     private userService: UserService,
     private router: Router
   ) {}
-
-  ngOnInit() {
-
-  }
 }

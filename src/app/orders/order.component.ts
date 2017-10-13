@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import { Order } from "./order";
 
@@ -20,8 +20,9 @@ export class OrderComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private location: Location    
-  ) {}
+    private location: Location,
+    private router: Router    
+  ) {}  
 
   ngOnInit(): void {
     this.route.paramMap

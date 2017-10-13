@@ -9,7 +9,7 @@ import { UserService } from "../users/user.service";
 @Component({
   selector: 'order',
   templateUrl: './order-history.component.html',
-  // styleUrls: ['./order-history.component.css']
+  styleUrls: ['./order-history.component.css']
 })
 export class OrderHistoryComponent implements OnInit {
   private orders: Array<Order>;
