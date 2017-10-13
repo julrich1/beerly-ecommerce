@@ -15,10 +15,10 @@
           minlength="2"
           required>
         <div *ngIf="shipForm.controls['firstname']?.invalid && (shipForm.controls['firstname']?.dirty || shipForm.controls['firstname']?.touched)" class="error">
-          <p *ngIf="shipForm.controls['firstname']?.errors?.required">
+          <p *ngIf="shipForm.controls['firstname']?.errors?.required" class="error-text">
             First name is required
           </p>
-          <p *ngIf="shipForm.controls['firstname']?.errors?.minlength">
+          <p *ngIf="shipForm.controls['firstname']?.errors?.minlength" class="error-text">
             First name requires 2 characters
           </p>
         </div> 
@@ -34,10 +34,10 @@
           minlength="2"
           required>
           <div *ngIf="shipForm.controls['lastname']?.invalid && (shipForm.controls['lastname']?.dirty || shipForm.controls['lastname']?.touched)" class="error">
-            <p *ngIf="shipForm.controls['lastname']?.errors?.required">
+            <p *ngIf="shipForm.controls['lastname']?.errors?.required" class="error-text">
               Last name is required
             </p>
-            <p *ngIf="shipForm.controls['lastname']?.errors?.minlength">
+            <p *ngIf="shipForm.controls['lastname']?.errors?.minlength" class="error-text">
               Last name requires 2 characters
             </p>
           </div> 
@@ -54,10 +54,10 @@
           minlength="5"
           required>
           <div *ngIf="shipForm.controls['address1']?.invalid && (shipForm.controls['address1']?.dirty || shipForm.controls['address1']?.touched)" class="error">
-            <p *ngIf="shipForm.controls['address1']?.errors?.required">
+            <p *ngIf="shipForm.controls['address1']?.errors?.required" class="error-text">
               Address is required
             </p>
-            <p *ngIf="shipForm.controls['address1']?.errors?.minlength">
+            <p *ngIf="shipForm.controls['address1']?.errors?.minlength" class="error-text">
               Address requires 5 characters
             </p>
           </div> 
@@ -81,10 +81,10 @@
           minlength="2"
           required>
         <div *ngIf="shipForm.controls['city']?.invalid && (shipForm.controls['city']?.dirty || shipForm.controls['city']?.touched)" class="error">
-          <p *ngIf="shipForm.controls['city']?.errors?.required">
+          <p *ngIf="shipForm.controls['city']?.errors?.required" class="error-text">
             City is required
           </p>
-          <p *ngIf="shipForm.controls['city']?.errors?.minlength">
+          <p *ngIf="shipForm.controls['city']?.errors?.minlength" class="error-text">
             City requires 2 characters
           </p>
         </div> 
@@ -100,10 +100,10 @@
           minlength="5"
           required>
         <div *ngIf="shipForm.controls['zip']?.invalid && (shipForm.controls['zip']?.dirty || shipForm.controls['zip']?.touched)" class="error">
-          <p *ngIf="shipForm.controls['zip']?.errors?.required">
+          <p *ngIf="shipForm.controls['zip']?.errors?.required" class="error-text">
             Zipcode is required
           </p>
-          <p *ngIf="shipForm.controls['zip']?.errors?.minlength">
+          <p *ngIf="shipForm.controls['zip']?.errors?.minlength" class="error-text">
             Zipcode requires 5 characters
           </p>
         </div> 
@@ -121,10 +121,10 @@
         <option *ngFor="let state of states" value="{{state}}">{{state}}</option>
       </select>
       <div *ngIf="shipForm.controls['state']?.invalid && (shipForm.controls['state']?.dirty || shipForm.controls['state']?.touched)" class="error">
-          <p *ngIf="shipForm.controls['state']?.errors">
-            State is required
-          </p>
-        </div> 
+        <p *ngIf="shipForm.controls['state']?.errors" class="error-text">
+          State is required
+        </p>
+      </div> 
     </div>
   
     <div class="left-align">
@@ -135,7 +135,7 @@
     </div>
 
     <div class="right-align">
-      <button [disabled]="!shipForm.valid" type="submit">Next</button>
+      <button [disabled]="!shipForm.valid || submitted" type="submit" name="next">Next</button>
     </div>
   </form>
 </div>

@@ -49,7 +49,7 @@ export class UserService implements OnInit {
         return false; 
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         this.userIsLoggedIn = false;        
         return false;
       });

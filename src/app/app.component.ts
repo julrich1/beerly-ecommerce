@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+// import { Router } from '@angular/router';
 
-import { UserService } from "./users/user.service";
-import { ProductService } from "./products/product.service";
+// import { UserService } from "./users/user.service";
+// import { ProductService } from "./products/product.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {  
+export class AppComponent {  
   constructor(
-    private userService: UserService,
-    private productService: ProductService,
-    private router: Router
+    // private userService: UserService,
+    // private productService: ProductService,
+    // private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -22,12 +22,5 @@ export class AppComponent implements OnInit {
     //     this.productService.getCart();
     //   }
     // });
-  }
-
-  logout(): void {
-    this.userService.logout().then((response) => {
-      this.productService.cart = [];
-      this.router.navigateByUrl("/");
-    })
   }
 }

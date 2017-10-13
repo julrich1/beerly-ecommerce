@@ -1,16 +1,35 @@
 <div class="login-container">
   <h2>Login</h2>
-  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" novalidate>
     <div class="container-left">
       <label for="email">Email</label>
-      <input name="email" type="email" ngModel required>
+      <input
+        name="email"
+        type="email"
+        ngModel
+        required
+        minlength="5">
+      <div *ngIf="loginForm.controls['email']?.invalid && (loginForm.controls['email']?.dirty || loginForm.controls['email']?.touched)" class="error">
+        <p *ngIf="loginForm.controls['email']?.errors?.required" class="error-text">
+          Email is required
+        </p>
+        <p *ngIf="loginForm.controls['email']?.errors?.minlength" class="error-text">
+          Email requires 5 characters
+        </p>
+      </div> 
+
     </div>
     <div class="container-left">
       <label for="password">Password</label>
       <input name="password" type="password" ngModel required>
+      <div *ngIf="loginForm.controls['password']?.invalid && (loginForm.controls['password']?.dirty || loginForm.controls['password']?.touched)" class="error">
+        <p *ngIf="loginForm.controls['password']?.errors?.required" class="error-text">
+          Password is required
+        </p>
+      </div> 
     </div>
     <div class="container-right">        
-      <button type="submit">Sign In</button>
+      <button type="submit" [disabled]="!loginForm.valid || submitted" name="sign-in">Sign In</button>
     </div>
   </form>
 </div>

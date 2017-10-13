@@ -12,6 +12,8 @@ import { ProductService } from "../products/product.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  private submitted = false;
+
   constructor(
     private userService: UserService,
     private productService: ProductService,
@@ -20,10 +22,23 @@ export class LoginComponent implements OnInit {
   ) {}
 
   onSubmit(form: NgForm): void {
+    this.submitted = true;
+    
     this.userService.login(form.value).then((result) => {
-      this.productService.getCart().then((result) => {
-        this.location.back();
-      })
+      console.log("RESULT: ", result);
+      if (result === false) {
+        //Show error here
+        console.log("There was an error");
+        this.submitted = false;
+      }
+      else {
+        this.productService.getCart().then((result) => {
+          this.location.back();
+        })
+      }
+    })
+    .catch((err) => {
+      console.log(err);
     });
   }
 
