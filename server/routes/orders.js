@@ -6,19 +6,41 @@ const authorizeUser = require("../common/authorize");
 const clearCart = require("../common/cart");
 
 router.post("/orders", authorizeUser, (req, res, next) => {
+  // TO-DO: Better validation here. Products should be pulled from the DB instead of trusting client.
   console.log("POST TO ORDERS", req.body);
 
   // const date = new Date();
 
   const user = req.body.user;
   user.user_id = req.claim.userId;
-  // user.order_number = date.getMonth() + date.getDay() + date.getFullYear() + user.user_id + date.getTime();
-  user.city = "Seattle";
+
   delete user.id;
   delete user.email;
-  delete user.firstname;
-  delete user.lastname;
 
+  // table.integer("user_id").references("users.id").onDelete("CASCADE");
+  // table.string("firstname").notNullable();
+  // table.string("lastname").notNullable();    
+  // table.string("address1").notNullable();
+  // table.string("address2");
+  // table.string("city").notNullable();
+  // table.string("state").notNullable();
+  // table.string("zip").notNullable();
+  // table.string("country").notNullable();
+  // table.string("phone").notNullable();
+  // table.string("status");
+  // table.decimal("tax");
+  // table.decimal("shipping_total");
+  // table.decimal("total");
+  // table.timestamps(true, true);
+
+  const subtotal = req.body.cart.reduce((acc, product) => {
+    acc += product.price * product.quantity;
+    return acc;
+  }, 0);
+
+  user.shipping_total = 13.00;
+  user.tax =  0.097 * subtotal;
+  user.total = subtotal + user.tax + user.shipping_total;
 
   console.log("USER:", user);
 

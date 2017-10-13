@@ -119,12 +119,15 @@ export class ProductService {
 
   submitOrder(): Promise<number> {
     const orderDetail = {
+      firstname: this.userService.user.firstname,
+      lastname: this.userService.user.lastname,
       address1: this.userService.user.address1,
       address2: this.userService.user.address2,
       zip: this.userService.user.zip,
       phone: this.userService.user.phone || 5555555555,
       country: this.userService.user.country || "USA",
-      state: this.userService.user.state
+      state: this.userService.user.state,
+      city: this.userService.user.city
     };
 
     const order = { cart: this.cart, user: orderDetail };

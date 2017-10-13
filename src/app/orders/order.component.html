@@ -1,4 +1,60 @@
-<p>Order Details</p>
+<div class="cart-display">  
+    <div class="cart-display-left">
+        <div *ngFor="let product of order.products" class="cart-product-container">
+            <div class="cart-image-container">
+                <a [routerLink]="['/product', product.id]">
+                <img class="cart-display-image" src="/assets/beers/{{product.image_url}}">
+                </a>
+            </div>
+            <div class="cart-display-description">
+                <a [routerLink]="['/product', product.id]">
+                <p>{{product.name}}</p>
+                </a>
+            </div>
+            <div class="cart-display-quantity">
+                <p>Quantity: {{product.quantity}}</p>
+            </div>
+            <div class="cart-display-subtotal">
+                <p>${{(product.price * product.quantity).toFixed(2)}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="cart-display-right">
+        <h4>Ship to</h4>
+        <div>
+            <p>{{order.firstname}} {{order.lastname}}</p>
+            <p>{{order.address1}}</p>
+            <p *ngIf="order.address2">{{order.address2}}</p>
+            <p>{{order.city}}, {{order.state}} {{order.zip}}</p>     
+        </div>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Subtotal</td>
+                    <td class="right-align">${{order.subtotal}}</td>
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td class="right-align">${{order.shipping_total}}</td>
+                </tr>
+                <tr>
+                    <td>Tax</td>
+                    <td class="right-align">${{order.tax}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="top-border">Total</td>
+                    <td class="right-align top-border">${{order.total}}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="checkout-button-container">
+        <button (click)="goBack()" class="checkout-button">Back</button>
+    </div>
+</div>
+<!-- <p>Order Details</p>
 <p>Order ID: {{order.id}}</p>
 <p>{{order.address1}}</p>
 <p>{{order.address2}}</p>
@@ -8,4 +64,4 @@
 
 <div *ngFor="let product of order.products">
     <p>{{product.quantity}}x {{product.name}}</p>
-</div>
+</div> -->

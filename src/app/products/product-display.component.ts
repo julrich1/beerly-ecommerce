@@ -18,6 +18,7 @@ export class ProductDisplayComponent implements OnInit {
   private product: Product;
   private quantities: Array<number>;
   private quantity: any = "1";
+  private adding = false;
 
   constructor(
     private productService: ProductService,
@@ -37,8 +38,10 @@ export class ProductDisplayComponent implements OnInit {
 
   add(product): void {
     if (this.userService.userIsLoggedIn) {
+      this.adding = true;      
       this.productService.addToCart(product, parseInt(this.quantity)).then(() => {
         //TO-DO: Show added to cart notification
+        this.adding = false;
       });
     }
     else {

@@ -16,6 +16,6 @@
         <option *ngFor="let qty of quantities" ngValue="{{qty}}">{{qty}}</option>
       </select>
     </p>
-    <button class="add-button" (click)="add(product)">Add to cart</button>
+    <button class="add-button" (click)="add(product)" [disabled]="adding">Add to cart</button>
   </div>
 </div>

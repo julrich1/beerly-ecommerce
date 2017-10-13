@@ -9,6 +9,11 @@ export class Order {
   country: string;
   phone: number;
   status: "Ordered";
+  subtotal: number;
+  products: Array<any>;
+  tax: number;
+  shipping: number;
+  total: number;
 
   constructor() {
 

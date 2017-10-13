@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-
-// import { Router } from '@angular/router';
 
 import { Order } from "./order";
 
@@ -13,16 +12,15 @@ import 'rxjs/add/operator/switchMap';
 @Component({
   selector: 'order',
   templateUrl: './order.component.html',
-  // styleUrls: ['./app.component.css']
+  styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-  // private product: Product;
   private order: Order = new Order();
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute
-    // private router: Router    
+    private route: ActivatedRoute,
+    private location: Location    
   ) {}
 
   ngOnInit(): void {
@@ -31,19 +29,20 @@ export class OrderComponent implements OnInit {
     .subscribe((order) => {
       console.log("ORDER:", order.json());
       this.order = order.json();
-    });
 
-    // this.productService.getOrder(11)
-    //   .then((response) => {
-    //     console.log(response);
-        // this.order = response.json();
-        
-      // })
+      this.generateOrderTotals();
+    });
   }
 
-  // submit(shipForm: NgForm): void {
-  //   console.log(shipForm.value);
-  //   this.router.navigateByUrl("/summary");
+  private generateOrderTotals() {
+    this.order.subtotal = this.order.products.reduce((acc, product) => {
+      acc += product.price * product.quantity;
+      return acc;
+    }, 0);
+  }
 
-  // }
+  private goBack() {
+    this.location.back();
+  }
+
 }
