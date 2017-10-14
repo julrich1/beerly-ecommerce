@@ -48,4 +48,19 @@ router.get("/products/category/:category", (req, res, next) => {
     });
 });
 
+router.get("/products/search/:searchTerm", (req, res, next) => {
+  let searchTerm = req.params.searchTerm.split(" ");
+  searchTerm = searchTerm.map(val => `%${val}%`).join(" ");
+
+  knex("products").where("name", "ilike", searchTerm)
+    .then((response) => {
+      if (response.length) {
+        res.send(response);
+      }
+      else {
+        res.send([]);
+      }
+    });
+});
+
 module.exports = router;

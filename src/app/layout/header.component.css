@@ -1,3 +1,8 @@
+button:disabled {
+  background-color: #C7C7C7;
+  cursor: not-allowed;
+}
+
 .logo {
   width: 100px;
   grid-column-start: 1;

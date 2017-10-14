@@ -10,6 +10,8 @@ import { UserService } from "../users/user.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  private searchString = "";
+
   constructor(
     private userService: UserService,
     private productService: ProductService,
@@ -21,5 +23,12 @@ export class HeaderComponent {
       this.productService.cart = [];
       this.router.navigateByUrl("/");
     })
+  }
+
+  search() {
+    if (this.searchString) {
+      this.router.navigate(["/search", this.searchString]);
+      this.searchString = "";
+    }
   }
 }

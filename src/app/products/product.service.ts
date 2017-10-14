@@ -26,7 +26,7 @@ export class ProductService {
       .toPromise()
       .then((response) => {
         return this.mapProducts(response.json());
-      })
+      });
   }
 
   getProductsByCategory(category: string): Promise<Product[]> {
@@ -39,7 +39,7 @@ export class ProductService {
         else {
           return [];
         }
-      })
+      });
   }
 
   getProduct(id): Promise<Product> {
@@ -48,7 +48,7 @@ export class ProductService {
       .then((response) => {
         const product: any = response.json();
         return new Product(product.id, product.name, product.description, product.price, product.rating, 1, product.image_url);
-      })
+      });
   }
 
   getHighlightProducts(): Array<Product> {
@@ -85,7 +85,7 @@ export class ProductService {
 
         console.log("Cart - ", this.cart);
         this.setCartTotal();
-      })
+      });
   }
 
   getCart(): Promise<void> {
@@ -95,7 +95,7 @@ export class ProductService {
         const products = response.json();
         this.cart = this.mapProducts(products);
         this.setCartTotal();
-      })
+      });
   }
 
   setCartTotal(): void {
@@ -146,7 +146,7 @@ export class ProductService {
       .toPromise()
       .then((response) => {
         return response;
-      })
+      });
   }
 
   getOrder(id: number): Promise<any> {
@@ -154,6 +154,20 @@ export class ProductService {
       .toPromise()
       .then((response) => {
         return response;
+      });
+  }
+
+  search(searchString: string): Promise<Product[]> {
+    return this.http.get(`${this.productsUrl}/search/${searchString}`, {headers: this.headers})
+      .toPromise()
+      .then((response) => {
+        console.log("Search results: ", response);
+        if (Array.isArray(response.json())) {
+          return this.mapProducts(response.json());
+        }
+        else {
+          return [];
+        }
       })
   }
 

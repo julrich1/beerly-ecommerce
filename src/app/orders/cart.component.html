@@ -16,7 +16,7 @@
         <p>Quantity: {{product.quantity}}</p>
       </div>
       <div class="cart-display-subtotal">
-        <p>${{(product.price * product.quantity).toFixed(2)}}</p>
+        <p>${{(product.price * product.quantity) | number : '1.2-2'}}</p>
       </div>
     </div>
   </div>
@@ -35,21 +35,21 @@
       <tbody>
         <tr>
           <td>Subtotal</td>
-          <td class="right-align">${{productService.cartTotal}}</td>
+          <td class="right-align">${{productService.cartTotal | number : '1.2-2'}}</td>
         </tr>
         <tr>
           <td>Shipping</td>
-          <td class="right-align">${{13.00}}</td>
+          <td class="right-align">${{shipping | number : '1.2-2'}}</td>
         </tr>
         <tr>
           <td>Tax</td>
-          <td class="right-align">${{(productService.cartTotal * .097).toFixed(2)}}</td>
+          <td class="right-align">${{(productService.cartTotal * .097) | number : '1.2-2'}}</td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
           <td class="top-border">Total</td>
-          <td class="right-align top-border">${{(productService.cartTotal + 13.00 + (productService.cartTotal * .097)).toFixed(2)}}</td>
+          <td class="right-align top-border">${{(productService.cartTotal + 13.00 + (productService.cartTotal * .097)) | number : '1.2-2'}}</td>
         </tr>
       </tfoot>
     </table>

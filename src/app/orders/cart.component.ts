@@ -12,7 +12,7 @@ import { ProductService } from "../products/product.service";
 export class CartComponent {
   private tax: number;
   private subtotal: number;
-  private shipping: number;
+  private shipping: number = 13.00;
   private total: number;
 
   constructor(

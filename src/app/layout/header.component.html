@@ -1,7 +1,9 @@
 <a routerLink="/"><img class="logo" src="/assets/logo.png"></a>
 <div class="search">
-  <input class="search-input" type="text" name="search"><!--
-  --><button type="submit" class="search-button">Search</button>
+  <form (ngSubmit)="search()" #searchForm="ngForm" novalidate>
+    <input class="search-input" [(ngModel)]="searchString" type="text" name="search" pattern="[a-zA-Z0-9 ]+" required><!--
+    --><button [disabled]="!searchString || !searchForm.valid" type="submit" class="search-button">Search</button>
+  </form>
 </div>
 <div class="auth-container">
   <button class="auth-buttons"routerLink="/register" *ngIf="!userService.userIsLoggedIn">Register</button>

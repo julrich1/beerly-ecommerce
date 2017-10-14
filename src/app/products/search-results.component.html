@@ -1,0 +1,4 @@
+<div class="product-list">
+  <h2 *ngIf="!products.length">No results</h2>
+  <product [product]="product" *ngFor="let product of products"></product>
+</div>
