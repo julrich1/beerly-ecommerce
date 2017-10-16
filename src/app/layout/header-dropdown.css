@@ -12,6 +12,7 @@ a:hover {
 .dropdown {
   position: relative;
   display: inline-block;
+  cursor: auto;
 }
 
 .dropdown-content {
