@@ -1,3 +1,7 @@
+* {
+  font-style: normal;
+}
+
 label {
   display: block;
   text-align: left;
@@ -35,14 +39,11 @@ p {
 }
 
 .ng-valid[required], .ng-valid.required  {
-  border-left: 5px solid #42A948; /* green */
+  border-left: 5px solid #42A948;
 }
 
 .ng-invalid:not(form)  {
-  border-left: 5px solid #a94442; /* red */
-}
-
-.error {
+  border-left: 5px solid #a94442;
 }
 
 .center-align {
@@ -75,7 +76,6 @@ p {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  /* width: 600px; */
 }
 
 .checkout-block {

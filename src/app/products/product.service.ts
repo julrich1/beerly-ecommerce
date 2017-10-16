@@ -55,7 +55,6 @@ export class ProductService {
     const result = [];
 
     this.getProducts().then((products) => {
-      console.log(products);
       for (let i = 0; i < 4; i++) {
         let random = Math.floor(Math.random() * (products.length - 0)) + 0;
         result.push(products[random]);
@@ -80,10 +79,8 @@ export class ProductService {
             found = true;
           }
         }
-        console.log("Was it found?", found);
         if (!found) { this.cart.push(new Product(newProduct.id, newProduct.name, newProduct.description, newProduct.price, newProduct.rating, newProduct.quantity, newProduct.image)); }
 
-        console.log("Cart - ", this.cart);
         this.setCartTotal();
       });
   }
@@ -132,8 +129,6 @@ export class ProductService {
 
     const order = { cart: this.cart, user: orderDetail };
 
-    console.log(order);
-
     return this.http.post(`${this.orderUrl}`, order, {headers: this.headers})
       .toPromise()
       .then((result) => {
@@ -161,7 +156,6 @@ export class ProductService {
     return this.http.get(`${this.productsUrl}/search/${searchString}`, {headers: this.headers})
       .toPromise()
       .then((response) => {
-        console.log("Search results: ", response);
         if (Array.isArray(response.json())) {
           return this.mapProducts(response.json());
         }
@@ -172,7 +166,6 @@ export class ProductService {
   }
 
   private mapProducts(products): Product[] {
-    console.log(products);
     return products.map((product) => {
       return new Product(product.id, product.name, product.description, product.price, product.rating, product.quantity, product.image_url);
     });

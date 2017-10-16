@@ -34,34 +34,15 @@ export class ProductListComponent implements OnInit {
     this.route.paramMap
     .switchMap((params: ParamMap) => this.productService.getProductsByCategory(params.get("category")))
     .subscribe(result => {
-      console.log("RESULT: ", result);
       this.products = result;
       this.maxPageNumber = Math.ceil(this.products.length / ITEMS_PER_PAGE);
       this.populatePage();      
     });
-
-
-    console.log(this.pageNumber);
-      // .switchMap((params: ParamMap) => {
-      //   params.get("page")
-      // })
-      // .subscribe()
-    // .switchMap((params: ParamMap) => console.log(params.get("page"));
   }
 
   populatePage() {
     const start = ITEMS_PER_PAGE * (this.pageNumber - 1);
     const end = ITEMS_PER_PAGE * (this.pageNumber);
-    console.log("PRODUCTS LENGTH:", this.products.length);    
-    console.log("START: ", start, "END: ", end);
     this.page = this.products.slice(start, end);
-    console.log("PAGE LENGTH:", this.page.length);
   }
-
-
-    // this.productService.getProductsByCategory("belgians").then((result) => {
-    //   this.products = result;
-    // });
-  // }
-  
 }

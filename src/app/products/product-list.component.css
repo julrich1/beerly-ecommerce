@@ -1,7 +1,5 @@
 .product-list {
   display: inline-block;
-  /* border: 1px solid orange; */
   text-align: center;
   margin: 10px;
-  /* width: 100%; */
 }

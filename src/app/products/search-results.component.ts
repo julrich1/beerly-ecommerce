@@ -7,8 +7,6 @@ import { ProductService } from "./product.service";
 
 import 'rxjs/add/operator/switchMap';
 
-const ITEMS_PER_PAGE = 10;
-
 @Component({
   selector: 'product-list',
   templateUrl: './search-results.component.html',

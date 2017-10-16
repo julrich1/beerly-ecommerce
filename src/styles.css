@@ -61,7 +61,6 @@ input {
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 100px auto 60px 60px;
-    /* grid-template-columns: 100px auto auto auto; */
     grid-area: header;
     background-color: white;
     vertical-align: middle;
@@ -103,7 +102,6 @@ input {
 
 .navbar {
   grid-area: nav;
-  /* background-color: green; */
   padding: 10px;
   margin-bottom: 1px;
   border-top: 1px solid #AFAFAF;
@@ -141,8 +139,6 @@ input {
 }
 
 .product-price, .product-name {
-  /* float: right; */
-  /* padding-right: 10px; */
   margin: 5px 2px 0px 2px;
   text-align: left;
   color: #474747;
@@ -155,8 +151,6 @@ input {
 .product-link {
   text-decoration: none;
 }
-/* .product-link:hover {
-} */
 
 .category-link {
   text-decoration: none;

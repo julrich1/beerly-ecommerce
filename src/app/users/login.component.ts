@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     
     this.userService.login(form.value).then((result) => {
-      console.log("RESULT: ", result);
       if (result === false) {
         //Show error here
         console.log("There was an error");
@@ -46,16 +45,5 @@ export class LoginComponent implements OnInit {
     if (this.userService.userIsLoggedIn) {
       this.router.navigate(["home"]);
     }
-    // this.userService.isLoggedIn().then((res) => {
-    //   console.log(res);
-    // })
   }
-  // products: Array<Product> = [];
-  // constructor(private productService: ProductService) {}
-
-  // ngOnInit() {
-  //   this.products = this.productService.getHighlightProducts();
-  // }
-  // @Input()
-  // product: object = {};
 }

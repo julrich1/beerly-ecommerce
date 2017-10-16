@@ -28,7 +28,6 @@ export class OrderComponent implements OnInit {
     this.route.paramMap
     .switchMap((params: ParamMap) => this.productService.getOrder(+params.get("id")))
     .subscribe((order) => {
-      console.log("ORDER:", order.json());
       this.order = order.json();
 
       this.generateOrderTotals();

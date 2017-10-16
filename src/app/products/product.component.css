@@ -1,8 +1,5 @@
 .product {
   display: inline-block;
-  /* min-height: 100px;
-  min-width: 100px; */
-  /* border: 1px solid black; */
   width: 200px;
   height: 250px;
   margin-left: 15px;
@@ -11,8 +8,6 @@
   margin-bottom: 15px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  /* overflow-x: hidden;
-  overflow-y: hidden; */
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

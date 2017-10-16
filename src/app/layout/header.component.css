@@ -41,7 +41,6 @@ button:disabled {
   font-size: 10px;
   line-height: 18px;
   text-align: center;
-  /* min-width: 10px; */
   padding: 2px 7px 2px 7px;
 }
 
@@ -61,10 +60,6 @@ button:disabled {
   color: white;
   box-shadow: none;
   height: 33px;
-  /* border-top: 1px #AFAFAF solid;
-  border-bottom: 1px #AFAFAF solid;
-  border-left: 0px;
-  border-right: 1px #AFAFAF solid; */
   outline: none;
 }
 
@@ -80,9 +75,6 @@ button:disabled {
   align-self: center;
   text-align: right;
   min-width: 265px;
-  /* margin-left: 100px; */
-  /* max-width: 370px; */
-  /* width: 300px; */
 }
 
 .auth-container {

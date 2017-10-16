@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Product } from "./product"
 
@@ -16,6 +16,4 @@ export class ProductHighlightsComponent implements OnInit {
   ngOnInit() {
     this.products = this.productService.getHighlightProducts();
   }
-  // @Input()
-  // product: object = {};
 }

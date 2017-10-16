@@ -18,17 +18,11 @@ export class AddressComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log("Are they logged in?", this.userService.userIsLoggedIn);
-    // if (!this.userService.userIsLoggedIn) {
-    //   this.router.navigateByUrl("login");
-    // }
-    // else {
-      this.userService.getUser().then(() => {
-        if (!this.userService.user.state) {
-          this.userService.user.state = "Select state";
-        }
-      })
-    // }
+    this.userService.getUser().then(() => {
+      if (!this.userService.user.state) {
+        this.userService.user.state = "Select state";
+      }
+    });
   }
 
   submit(shipForm: NgForm): void {

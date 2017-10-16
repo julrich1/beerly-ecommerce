@@ -27,14 +27,11 @@ router.get("/products/:id", (req, res, next) => {
       else {
         res.send("No product found");
       }
-      // console.log("Product: ", response);
     });
 });
 
 router.get("/products/category/:category", (req, res, next) => {
   const category = req.params.category;
-
-  // if (isNaN(id) || id < 0) { return next("Invalid product id"); }
 
   knex("products").where("category", category)
     .then((response) => {
@@ -44,7 +41,6 @@ router.get("/products/category/:category", (req, res, next) => {
       else {
         res.send([]);
       }
-      // console.log("Product: ", response);
     });
 });
 

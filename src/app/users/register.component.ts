@@ -21,10 +21,10 @@ export class RegisterComponent {
   private registerForm: FormGroup;
   
 
-  constructor(private userService: UserService,
-              private router: Router,
-              fb: FormBuilder
-             )
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    fb: FormBuilder)
   {
     this.registerForm = fb.group({
       email: [""],

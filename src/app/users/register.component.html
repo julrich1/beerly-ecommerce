@@ -1,25 +1,4 @@
-<div class="login-container">
-        <!-- <form [formGroup]="registerForm">
-            <div class="form-group">
-            <label for="password">Password</label>
-            <input 
-                type="password" 
-                id="password" 
-                class="form-control" 
-                formControlName="password"
-                [formGroup]="registerForm">    
-            </div>
-            <div class="form-group">
-            <label for="confirmPassword">Confirm Password</label>
-            <input 
-                type="password" 
-                class="form-control" 
-                id="confirmPassword"
-                formControlName="confirmPassword"
-                [formGroup]="registerForm">
-            </div>
-        </form> -->
-            
+<div class="login-container">            
     <h2>Register</h2>        
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)" novalidate>
         <div class="container-left">

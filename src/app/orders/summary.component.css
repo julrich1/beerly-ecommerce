@@ -71,7 +71,6 @@ tfoot {
 }
 
 .cart-display-right {
-  /* margin-left: 20px; */
   padding: 20px;
   grid-column-start: 2;
   justify-self: left;
@@ -79,7 +78,6 @@ tfoot {
   border-width: 1px 1px 1px 0px;
   border-style: solid;
   border-color: #AFAFAF;
-  /* border: 1px 1px 1px 0px solid #AFAFAF; */
   border-radius: 0px 3px 3px 0px;
   text-align: left;
   min-width: 300px;
@@ -111,7 +109,6 @@ tfoot {
 .cart-display-quantity,
 .cart-display-subtotal {
   display: inline-block;
-  /* border: 1px orange solid; */
   margin: 10px;
 }
 
