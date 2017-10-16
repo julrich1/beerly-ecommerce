@@ -7,7 +7,7 @@ import { UserService } from "../users/user.service";
 @Component({
   selector: 'header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ["./header.component.css", "./header-dropdown.css"]
 })
 export class HeaderComponent {
   private searchString = "";

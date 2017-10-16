@@ -16,7 +16,6 @@ import { RegisterComponent } from "./users/register.component";
 import { SummaryComponent } from "./orders/summary.component";
 import { OrderComponent } from "./orders/order.component";
 import { OrderHistoryComponent } from "./orders/order-history.component";
-import { ProfileComponent } from "./users/profile.component";
 import { AddressComponent } from "./users/address.component";
 import { HeaderComponent } from "./layout/header.component";
 import { SearchResultsComponent } from "./products/search-results.component";
@@ -26,7 +25,6 @@ import { UserService }     from './users/user.service';
 import { LoggedIn }     from './users/loggedin.service';
 
 import { AppRoutingModule }     from './app-routing.module';
-
 
 @NgModule({
   declarations: [
@@ -43,7 +41,6 @@ import { AppRoutingModule }     from './app-routing.module';
     SummaryComponent,
     OrderComponent,
     OrderHistoryComponent,
-    ProfileComponent,
     AddressComponent,
     HeaderComponent,
     SearchResultsComponent

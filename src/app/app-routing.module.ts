@@ -11,7 +11,6 @@ import { SummaryComponent } from "./orders/summary.component";
 import { OrderComponent } from "./orders/order.component";
 import { OrderHistoryComponent } from "./orders/order-history.component";
 import { ProductListComponent } from "./products/product-list.component";
-import { ProfileComponent } from "./users/profile.component";
 import { AddressComponent } from "./users/address.component";
 import { SearchResultsComponent } from "./products/search-results.component";
 
@@ -31,7 +30,6 @@ const routes: Routes = [
   { path: "order/:id", component: OrderComponent, resolve: { AuthResolver } },
   { path: "order-history", component: OrderHistoryComponent, resolve: { AuthResolver } },
   { path: "products/category/:category", component: ProductListComponent, resolve: { AuthResolver } },
-  { path: "profile", component: ProfileComponent, resolve: { AuthResolver }, canActivate: [LoggedIn] },
   { path: "edit-address", component: AddressComponent, resolve: { AuthResolver }, canActivate: [LoggedIn] },
   { path: "search/:searchTerms", component: SearchResultsComponent, resolve: { AuthResolver } }    
 ];
