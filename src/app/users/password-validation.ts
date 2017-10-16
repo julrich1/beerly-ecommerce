@@ -1,13 +1,37 @@
-import { AbstractControl } from '@angular/forms';
-export class PasswordValidation {
+import { FormControl } from '@angular/forms';
 
-    static MatchPassword(AC: AbstractControl) {
-       let password = AC.get("password").value;
-       let confirmPassword = AC.get("confirmPassword").value;
-        if(password != confirmPassword) {
-            AC.get("confirmPassword").setErrors( {MatchPassword: true} )
-        } else {
-            return null
-        }
+
+export function PasswordValidation (otherControlName: string) {
+
+  let thisControl: FormControl;
+  let otherControl: FormControl;
+
+  return function matchOtherValidate (control: FormControl) {
+    if (!control.parent) {
+      return null;
+    }
+
+    if (!thisControl) {
+      thisControl = control;
+      otherControl = control.parent.get(otherControlName) as FormControl;
+      if (!otherControl) {
+        throw new Error('matchOtherValidator(): other control is not found in parent group');
+      }
+      otherControl.valueChanges.subscribe(() => {
+        thisControl.updateValueAndValidity();
+      });
+    }
+
+    if (!otherControl) {
+      return null;
+    }
+
+    if (otherControl.value !== thisControl.value) {
+      return {
+        matchOther: true
+      };
+    }
+
+    return null;
     }
 }

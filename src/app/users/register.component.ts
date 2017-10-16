@@ -24,18 +24,15 @@ export class RegisterComponent {
   constructor(
     private userService: UserService,
     private router: Router,
-    fb: FormBuilder)
-  {
+    fb: FormBuilder) {
+
     this.registerForm = fb.group({
-      email: [""],
+      email: ["", Validators.email],
       password: ["", Validators.required],
-      confirmPassword: ["", Validators.required],
+      confirmPassword: ["", [Validators.required, PasswordValidation('password')]],
       firstname: [""],
       lastname: [""]
-
-    }, {
-      validator: PasswordValidation.MatchPassword
-    })
+    });
   }
            
   onSubmit(form: NgForm): void {
@@ -47,8 +44,8 @@ export class RegisterComponent {
       });
     })
     .catch((err) => {
-      // Show error message to user
-      console.log("There was an error in registration.")
+      //TO-DO: Show error message to user
+      console.error("There was an error during registration");
       this.submitted = false;
     });
   }

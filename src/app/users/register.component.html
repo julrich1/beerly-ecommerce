@@ -50,7 +50,7 @@
                 <p *ngIf="registerForm.controls['confirmPassword']?.errors?.required" class="error-text">
                     Please confirm password
                 </p>
-                <p *ngIf="registerForm.controls['confirmPassword']?.errors?.MatchPassword" class="error-text">
+                <p *ngIf="registerForm.controls['confirmPassword']?.errors?.matchOther" class="error-text">
                     Passwords must match
                 </p>
             </div>

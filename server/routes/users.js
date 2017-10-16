@@ -45,7 +45,7 @@ router.patch("/users", authorizeUser, (req, res, next) => {
 router.post("/users", (req, res, next) => {
   if (!req.body.email || !req.body.password || !req.body.firstname || !req.body.lastname) { return next(createError(400, "Invalid parameters")); }
   if (req.body.password.length < 4) { return next(createError(400, "Password must be at least 4 characters long")); }
-  if (req.body.email.length < 6) { return next(createError(400, "Email must be at least 5 characters long")); } 
+  if (req.body.email.length < 5) { return next(createError(400, "Email must be at least 5 characters long")); } 
   if (req.body.email.match(/[^0-9a-z@.-]/ig)) { return next(createError(400, "Email contains invalid characters")); }
 
   const userData = {};

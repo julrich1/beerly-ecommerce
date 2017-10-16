@@ -13,6 +13,7 @@ import { ProductService } from "../products/product.service";
 })
 export class LoginComponent implements OnInit {
   private submitted = false;
+  private error = false;
 
   constructor(
     private userService: UserService,
@@ -23,11 +24,11 @@ export class LoginComponent implements OnInit {
 
   onSubmit(form: NgForm): void {
     this.submitted = true;
+    this.error = false;
     
     this.userService.login(form.value).then((result) => {
       if (result === false) {
-        //Show error here
-        console.log("There was an error");
+        this.error = true;
         this.submitted = false;
       }
       else {

@@ -1,4 +1,5 @@
 <div class="login-container">
+  <div *ngIf="error"><p class="error-text">Username or password is incorrect</p></div>
   <h2>Login</h2>
   <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" novalidate>
     <div class="container-left">
