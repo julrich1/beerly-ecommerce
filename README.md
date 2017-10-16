@@ -1,3 +1,5 @@
+Live version of the site: http://beerly-app.herokuapp.com/ (login: test@test.com, password: test)
+
 # Beerly - An e-commerce site developed as a proof of concept
 
 * Why create yet another e-commerce platform?

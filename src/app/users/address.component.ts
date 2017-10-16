@@ -32,7 +32,7 @@ export class AddressComponent implements OnInit {
 
     this.userService.updateUser(user)
       .then((result) => {
-        this.router.navigateByUrl("/profile");
+        this.router.navigateByUrl("/home");
       });
   }
   
